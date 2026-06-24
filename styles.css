@@ -506,6 +506,31 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
 .a11y-btn { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.75); font-size: 0.78rem; padding: 6px 14px; border-radius: 8px; display: flex; align-items: center; gap: 6px; transition: all var(--transition); }
 .a11y-btn:hover { background: rgba(0,232,124,0.15); color: var(--accent); }
 
+/* ── SOBRE O PROJETO ── */
+.sobre-section { background: linear-gradient(160deg, var(--green-900) 0%, #0a1f3a 100%); position: relative; overflow: hidden; }
+.sobre-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,232,124,0.07) 0%, transparent 70%); pointer-events: none; }
+.sobre-section .section-eyebrow { color: var(--green-300); justify-content: center; }
+.sobre-section .section-title { color: white; }
+.sobre-section .section-desc { color: rgba(255,255,255,0.6); margin: 0 auto; }
+.sobre-cards { display: flex; align-items: center; justify-content: center; gap: 0; margin-top: 56px; flex-wrap: wrap; }
+.sobre-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 40px 36px; text-align: center; width: 300px; backdrop-filter: blur(12px); transition: all var(--transition); }
+.sobre-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(0,232,124,0.3); transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,232,124,0.2); }
+.sobre-avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--green-500), var(--blue-500)); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; color: white; margin: 0 auto 20px; box-shadow: 0 8px 32px rgba(0,232,124,0.3); }
+.sobre-name { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; color: white; margin-bottom: 8px; }
+.sobre-role { display: inline-block; background: rgba(0,232,124,0.12); border: 1px solid rgba(0,232,124,0.25); color: var(--green-300); font-size: 0.75rem; font-weight: 600; padding: 4px 14px; border-radius: 100px; letter-spacing: 0.04em; margin-bottom: 16px; }
+.sobre-desc { color: rgba(255,255,255,0.55); font-size: 0.85rem; line-height: 1.65; margin-bottom: 20px; }
+.sobre-tags { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.sobre-tag { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.65); font-size: 0.72rem; font-weight: 600; padding: 4px 12px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1); }
+.sobre-divider { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 0 32px; }
+.sobre-divider-line { width: 1px; height: 60px; background: linear-gradient(to bottom, transparent, rgba(0,232,124,0.4), transparent); }
+.sobre-divider-icon { font-size: 2rem; animation: spin 8s linear infinite; }
+.sobre-footer-text { text-align: center; color: rgba(255,255,255,0.3); font-size: 0.78rem; margin-top: 48px; letter-spacing: 0.04em; }
+@media (max-width: 768px) {
+  .sobre-cards { flex-direction: column; align-items: center; }
+  .sobre-divider { flex-direction: row; padding: 16px 0; }
+  .sobre-divider-line { width: 60px; height: 1px; background: linear-gradient(to right, transparent, rgba(0,232,124,0.4), transparent); }
+}
+
 /* ── IMPACT CALCULATOR ── */
 .calc-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-top: 48px; }
 .calc-inputs { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 32px; }
