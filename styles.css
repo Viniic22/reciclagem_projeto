@@ -308,12 +308,16 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .color-card-icon { font-size: 2.2rem; margin-bottom: 12px; }
 .color-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800; color: white; margin-bottom: 4px; }
 .color-card p { color: rgba(255,255,255,0.8); font-size: 0.78rem; font-weight: 500; }
-.cc-blue   { background: linear-gradient(135deg, #1565C0, #1976D2); }
-.cc-red    { background: linear-gradient(135deg, #c62828, #e53935); }
-.cc-green  { background: linear-gradient(135deg, #2e7d32, #388e3c); }
 .cc-yellow { background: linear-gradient(135deg, #f57f17, #f9a825); }
-.cc-brown  { background: linear-gradient(135deg, #4e342e, #6d4c41); }
+.cc-blue   { background: linear-gradient(135deg, #1565C0, #1976D2); }
+.cc-white  { background: linear-gradient(135deg, #546e7a, #78909c); }
+.cc-gray   { background: linear-gradient(135deg, #424242, #616161); }
 .cc-orange { background: linear-gradient(135deg, #e65100, #f57c00); }
+.cc-brown  { background: linear-gradient(135deg, #4e342e, #6d4c41); }
+.cc-black  { background: linear-gradient(135deg, #1a1a1a, #333333); }
+.cc-purple { background: linear-gradient(135deg, #4a148c, #6a1b9a); }
+.cc-green  { background: linear-gradient(135deg, #2e7d32, #388e3c); }
+.cc-red    { background: linear-gradient(135deg, #c62828, #e53935); }
 
 /* ── STEPS TIMELINE ── */
 .steps-timeline { position: relative; padding-left: 40px; }
