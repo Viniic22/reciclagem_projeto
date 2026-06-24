@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Portal educacional sobre reciclagem no Brasil. Aprenda a separar resíduos corretamente e conheça dados e tecnologias de sustentabilidade."/>
+<meta property="og:title" content="Recicla Brasil – Transformando Resíduos em Futuro"/>
+<meta property="og:description" content="Portal educacional e informativo sobre reciclagem, sustentabilidade e tecnologias ambientais no Brasil."/>
+<meta property="og:type" content="website"/>
+<title>Recicla Brasil – Transformando Resíduos em Futuro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root {
+  --green-900: #0a2e1a;
+  --green-800: #0f3d22;
+  --green-700: #155c31;
+  --green-600: #1a7a40;
+  --green-500: #22a052;
+  --green-400: #2ec96a;
+  --green-300: #6ddea0;
+  --green-100: #d4f5e2;
+  --green-50:  #f0faf4;
+  --blue-900:  #062040;
+  --blue-700:  #0a4a80;
+  --blue-500:  #1276cc;
+  --blue-300:  #5ab0f0;
+  --blue-100:  #d0eafc;
+  --accent:    #00e87c;
+  --white:     #ffffff;
+  --gray-50:   #f7f9f8;
+  --gray-100:  #edf0ee;
+  --gray-200:  #d8deda;
+  --gray-400:  #8fa39a;
+  --gray-600:  #4a5e55;
+  --gray-800:  #1e2e28;
+  --text:      #1e2e28;
+  --text-muted:#4a5e55;
+  --surface:   #ffffff;
+  --surface2:  #f7f9f8;
+  --border:    #d8deda;
+  --nav-bg:    rgba(10,46,26,0.97);
+  --shadow-sm: 0 2px 8px rgba(10,46,26,0.08);
+  --shadow-md: 0 8px 32px rgba(10,46,26,0.12);
+  --shadow-lg: 0 24px 64px rgba(10,46,26,0.16);
+  --radius:    16px;
+  --radius-sm: 8px;
+  --transition:0.3s cubic-bezier(0.4,0,0.2,1);
+}
+[data-theme="dark"] {
+  --text:      #e8f5ee;
+  --text-muted:#8fa39a;
+  --surface:   #0f1f17;
+  --surface2:  #0a1710;
+  --border:    #1e3828;
+  --gray-50:   #0a1710;
+  --gray-100:  #0f1f17;
+  --nav-bg:    rgba(5,12,8,0.98);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+  --shadow-md: 0 8px 32px rgba(0,0,0,0.4);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);line-height:1.6;overflow-x:hidden;transition:background var(--transition),color var(--transition)}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--surface2)}
+::-webkit-scrollbar-thumb{background:var(--green-500);border-radius:3px}
+
+/* NAV */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,232,124,0.1);transition:all var(--transition)}
+#navbar.scrolled{box-shadow:0 4px 32px rgba(0,0,0,0.3)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:800;color:var(--white);letter-spacing:-0.02em}
+.nav-logo .dot{width:10px;height:10px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:0.7}}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-links a{color:rgba(255,255,255,0.75);font-size:0.875rem;font-weight:500;padding:8px 14px;border-radius:8px;transition:all var(--transition)}
+.nav-links a:hover,.nav-links a.active{color:var(--accent);background:rgba(0,232,124,0.08)}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.btn-theme{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.75);font-size:1rem;transition:all var(--transition)}
+.btn-theme:hover{background:rgba(0,232,124,0.12);color:var(--accent)}
+.btn-cta-nav{background:var(--accent);color:var(--green-900);font-weight:700;font-size:0.8rem;padding:9px 18px;border-radius:9px;letter-spacing:0.02em;text-transform:uppercase;transition:all var(--transition)}
+.btn-cta-nav:hover{background:#00ff8a;transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;width:40px;height:40px;align-items:center;justify-content:center;background:rgba(255,255,255,0.07);border-radius:10px;color:white}
+.hamburger span{display:block;width:20px;height:2px;background:white;border-radius:2px;transition:all var(--transition)}
+.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(10,46,26,0.99);padding:16px;flex-direction:column;gap:4px;border-bottom:1px solid rgba(0,232,124,0.12);z-index:999}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:rgba(255,255,255,0.8);padding:12px 16px;border-radius:10px;font-weight:500;transition:all var(--transition)}
+.mobile-menu a:hover{background:rgba(0,232,124,0.1);color:var(--accent)}
+
+/* PAGE SECTIONS */
+.page-section{display:none;padding-top:68px}
+.page-section.active{display:block;animation:fadeIn 0.3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* HERO */
+.hero{min-height:100vh;background:linear-gradient(145deg,var(--green-900) 0%,var(--green-800) 40%,var(--blue-900) 100%);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:68px}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2322a052' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");animation:bgScroll 30s linear infinite}
+@keyframes bgScroll{0%{background-position:0 0}100%{background-position:60px 60px}}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(80px);animation:orbFloat 8s ease-in-out infinite}
+.hero-orb-1{width:600px;height:600px;background:radial-gradient(circle,rgba(0,232,124,0.12),transparent 70%);top:-200px;right:-100px}
+.hero-orb-2{width:400px;height:400px;background:radial-gradient(circle,rgba(18,118,204,0.15),transparent 70%);bottom:-100px;left:-50px;animation-delay:-4s}
+@keyframes orbFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.05)}}
+.hero-content{max-width:1280px;margin:0 auto;padding:80px 24px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,232,124,0.12);border:1px solid rgba(0,232,124,0.25);color:var(--green-300);font-size:0.78rem;font-weight:600;padding:6px 14px;border-radius:100px;margin-bottom:24px;letter-spacing:0.06em;text-transform:uppercase}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.4rem,5vw,3.8rem);font-weight:800;color:var(--white);line-height:1.1;letter-spacing:-0.03em;margin-bottom:20px}
+.hero h1 span{color:var(--accent)}
+.hero p{color:rgba(255,255,255,0.65);font-size:1.1rem;line-height:1.7;margin-bottom:36px;max-width:480px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:var(--accent);color:var(--green-900);font-weight:700;font-size:0.95rem;padding:14px 28px;border-radius:12px;display:inline-flex;align-items:center;gap:8px;transition:all var(--transition)}
+.btn-primary:hover{background:#00ff8a;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,232,124,0.3)}
+.btn-outline{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.85);font-weight:600;font-size:0.95rem;padding:14px 28px;border-radius:12px;border:1px solid rgba(255,255,255,0.15);display:inline-flex;align-items:center;gap:8px;transition:all var(--transition)}
+.btn-outline:hover{background:rgba(255,255,255,0.12);transform:translateY(-2px)}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:48px}
+.hero-stat{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;text-align:center}
+.hero-stat-num{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--accent);display:block}
+.hero-stat-label{color:rgba(255,255,255,0.5);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;margin-top:2px}
+.hero-visual{display:flex;justify-content:center;align-items:center}
+.hero-card-stack{position:relative;width:360px;height:400px}
+.hero-card{position:absolute;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:20px;backdrop-filter:blur(12px);padding:24px;transition:all var(--transition)}
+.hero-card-main{width:100%;height:100%;top:0;left:0}
+.hero-card-float{width:160px;bottom:-24px;right:-24px;background:rgba(0,232,124,0.1);border-color:rgba(0,232,124,0.2);animation:cardFloat 4s ease-in-out infinite}
+@keyframes cardFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.hero-recycle-icon{font-size:4rem;text-align:center;margin:16px 0;animation:spin 8s linear infinite}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.hero-card h3{color:white;font-family:'Syne',sans-serif;font-size:1.1rem;margin-bottom:8px}
+.hero-card p{color:rgba(255,255,255,0.55);font-size:0.82rem}
+.mini-chart{display:flex;align-items:flex-end;gap:6px;height:60px;margin-top:12px}
+.mini-bar{flex:1;background:var(--accent);border-radius:4px 4px 0 0;animation:grow 1s ease-out forwards;transform-origin:bottom}
+@keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.35);font-size:0.75rem;display:flex;flex-direction:column;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:0.1em;pointer-events:none}
+.scroll-hint i{animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* SECTIONS */
+.section{padding:100px 24px}
+.section-alt{background:var(--surface2)}
+.container{max-width:1280px;margin:0 auto}
+.section-eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--green-500);font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px}
+.section-eyebrow::before{content:'';width:24px;height:2px;background:var(--green-500);border-radius:2px}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;color:var(--text);line-height:1.15;letter-spacing:-0.03em;margin-bottom:16px}
+.section-title span{color:var(--green-500)}
+.section-desc{color:var(--text-muted);font-size:1rem;line-height:1.7;max-width:560px}
+.section-header{margin-bottom:56px}
+.section-header.center{text-align:center}
+.section-header.center .section-desc{margin:0 auto}
+
+/* INFO CARDS */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.info-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px;transition:all var(--transition);position:relative;overflow:hidden}
+.info-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--green-500),var(--blue-500));opacity:0;transition:opacity var(--transition)}
+.info-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--green-300)}
+.info-card:hover::before{opacity:1}
+.info-card-icon{width:52px;height:52px;border-radius:12px;background:var(--green-50);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:20px;transition:all var(--transition)}
+[data-theme="dark"] .info-card-icon{background:rgba(34,160,82,0.15)}
+.info-card:hover .info-card-icon{background:var(--green-500)}
+.info-card h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:10px}
+.info-card p{color:var(--text-muted);font-size:0.88rem;line-height:1.65}
+
+/* COUNTERS */
+.counters-section{background:linear-gradient(135deg,var(--green-900),var(--green-800));padding:80px 24px}
+.counters-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;background:rgba(255,255,255,0.05);border-radius:20px;overflow:hidden}
+.counter-item{background:rgba(10,46,26,0.6);padding:40px 24px;text-align:center;position:relative}
+.counter-item::after{content:'';position:absolute;right:0;top:20%;bottom:20%;width:1px;background:rgba(255,255,255,0.06)}
+.counter-item:last-child::after{display:none}
+.counter-num{font-family:'Syne',sans-serif;font-size:2.8rem;font-weight:800;color:var(--accent);display:block;line-height:1}
+.counter-label{color:rgba(255,255,255,0.55);font-size:0.82rem;margin-top:8px;text-transform:uppercase;letter-spacing:0.06em}
+
+/* COLOR CARDS */
+.color-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:56px}
+.color-card{border-radius:var(--radius);padding:28px 20px;text-align:center;transition:all var(--transition);cursor:default;position:relative;overflow:hidden}
+.color-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.color-card::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.15);opacity:0;transition:opacity var(--transition)}
+.color-card:hover::after{opacity:1}
+.color-card-icon{font-size:2.2rem;margin-bottom:12px}
+.color-card h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:white;margin-bottom:4px}
+.color-card p{color:rgba(255,255,255,0.8);font-size:0.78rem;font-weight:500}
+.cc-blue{background:linear-gradient(135deg,#1565C0,#1976D2)}
+.cc-red{background:linear-gradient(135deg,#c62828,#e53935)}
+.cc-green{background:linear-gradient(135deg,#2e7d32,#388e3c)}
+.cc-yellow{background:linear-gradient(135deg,#f57f17,#f9a825)}
+.cc-brown{background:linear-gradient(135deg,#4e342e,#6d4c41)}
+.cc-orange{background:linear-gradient(135deg,#e65100,#f57c00)}
+
+/* STEPS */
+.steps-timeline{position:relative;padding-left:40px}
+.steps-timeline::before{content:'';position:absolute;left:12px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--green-500),var(--blue-500))}
+.step-item{position:relative;margin-bottom:32px}
+.step-item::before{content:attr(data-step);position:absolute;left:-40px;width:26px;height:26px;background:var(--green-500);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;top:4px}
+.step-item h4{font-weight:700;font-size:0.95rem;margin-bottom:6px;color:var(--text)}
+.step-item p{color:var(--text-muted);font-size:0.85rem;line-height:1.6}
+
+/* CARE CARDS */
+.care-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.care-card{display:flex;gap:16px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;transition:all var(--transition)}
+.care-card:hover{border-color:var(--green-400);box-shadow:var(--shadow-sm)}
+.care-card-icon{width:44px;height:44px;border-radius:10px;background:var(--green-50);display:flex;align-items:center;justify-content:center;color:var(--green-600);font-size:1.1rem;flex-shrink:0}
+[data-theme="dark"] .care-card-icon{background:rgba(34,160,82,0.15);color:var(--green-400)}
+.care-card h4{font-weight:600;font-size:0.9rem;margin-bottom:4px}
+.care-card p{color:var(--text-muted);font-size:0.8rem;line-height:1.5}
+
+/* QUIZ */
+.quiz-wrap{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:40px;max-width:700px;margin:0 auto}
+.quiz-q{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:24px;color:var(--text)}
+.quiz-opts{display:flex;flex-direction:column;gap:10px}
+.quiz-opt{display:flex;align-items:center;gap:12px;padding:14px 18px;border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all var(--transition);font-size:0.9rem}
+.quiz-opt:hover:not(.correct):not(.wrong){border-color:var(--green-500);background:var(--green-50)}
+[data-theme="dark"] .quiz-opt:hover:not(.correct):not(.wrong){background:rgba(34,160,82,0.08)}
+.quiz-opt.correct{border-color:#22c55e;background:#f0fdf4;color:#15803d;pointer-events:none}
+[data-theme="dark"] .quiz-opt.correct{background:rgba(34,197,94,0.1);color:#4ade80}
+.quiz-opt.wrong{border-color:#ef4444;background:#fff5f5;color:#dc2626;pointer-events:none}
+[data-theme="dark"] .quiz-opt.wrong{background:rgba(239,68,68,0.1);color:#f87171}
+.quiz-opt-letter{width:28px;height:28px;border-radius:7px;background:var(--gray-100);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.75rem;flex-shrink:0}
+[data-theme="dark"] .quiz-opt-letter{background:rgba(255,255,255,0.08)}
+.quiz-feedback{margin-top:16px;padding:14px 18px;border-radius:10px;font-size:0.88rem;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.ok{background:#f0fdf4;border:1px solid #86efac;color:#15803d}
+[data-theme="dark"] .quiz-feedback.ok{background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.25);color:#4ade80}
+.quiz-feedback.err{background:#fff5f5;border:1px solid #fca5a5;color:#dc2626}
+[data-theme="dark"] .quiz-feedback.err{background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.25);color:#f87171}
+.quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:24px}
+.quiz-progress{font-size:0.8rem;color:var(--text-muted)}
+.btn-quiz-next{background:var(--green-500);color:white;font-weight:600;font-size:0.85rem;padding:10px 22px;border-radius:9px;transition:all var(--transition)}
+.btn-quiz-next:hover{background:var(--green-600)}
+
+/* PROCESS STEPS */
+.process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0;position:relative;margin-bottom:8px}
+.process-steps::before{content:'';position:absolute;top:48px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green-500),var(--blue-500));z-index:0}
+.process-step{text-align:center;padding:24px 16px;position:relative;z-index:1}
+.ps-circle{width:96px;height:96px;border-radius:50%;background:var(--surface);border:2px solid var(--green-500);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 16px;box-shadow:0 0 0 6px var(--surface);transition:all var(--transition)}
+.process-step:hover .ps-circle{background:var(--green-500);box-shadow:0 0 0 6px var(--surface),0 0 0 8px rgba(34,160,82,0.3)}
+.process-step h4{font-weight:700;font-size:0.9rem;margin-bottom:6px}
+.process-step p{color:var(--text-muted);font-size:0.8rem}
+
+/* STAT BARS */
+.stats-bars{display:grid;gap:20px}
+.stat-bar-item label{display:flex;justify-content:space-between;font-size:0.85rem;font-weight:600;margin-bottom:8px;color:var(--text)}
+.stat-bar-item label span{color:var(--green-500)}
+.bar-track{background:var(--gray-100);border-radius:100px;height:10px;overflow:hidden}
+[data-theme="dark"] .bar-track{background:rgba(255,255,255,0.08)}
+.bar-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--green-500),var(--blue-500));transform:scaleX(0);transform-origin:left;transition:transform 1.2s cubic-bezier(0.4,0,0.2,1)}
+
+/* TECH CARDS */
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.tech-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:all var(--transition);display:flex;flex-direction:column;gap:12px}
+.tech-card:hover{border-color:var(--green-400);transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.tech-card-icon{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--green-500),var(--blue-500));display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:white}
+.tech-card h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700}
+.tech-card p{color:var(--text-muted);font-size:0.85rem;line-height:1.6;flex:1}
+.tech-tag{display:inline-flex;align-items:center;background:var(--green-50);color:var(--green-700);font-size:0.72rem;font-weight:600;padding:4px 10px;border-radius:100px;letter-spacing:0.04em;text-transform:uppercase}
+[data-theme="dark"] .tech-tag{background:rgba(34,160,82,0.12);color:var(--green-400)}
+
+/* SUCCESS CARDS */
+.success-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.success-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all var(--transition)}
+.success-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.success-card-top{height:8px;background:linear-gradient(90deg,var(--green-500),var(--accent))}
+.success-card-body{padding:24px}
+.success-card-body h4{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:6px}
+.success-card-body p{color:var(--text-muted);font-size:0.83rem;line-height:1.55}
+.success-card-badge{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:0.75rem;font-weight:600;color:var(--green-600)}
+[data-theme="dark"] .success-card-badge{color:var(--green-400)}
+
+/* CONTACT */
+.contact-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:56px;align-items:start}
+.contact-info-list{display:flex;flex-direction:column;gap:20px;margin-top:32px}
+.contact-info-item{display:flex;gap:16px;align-items:flex-start}
+.ci-icon{width:44px;height:44px;border-radius:10px;background:var(--green-50);display:flex;align-items:center;justify-content:center;color:var(--green-600);font-size:1rem;flex-shrink:0}
+[data-theme="dark"] .ci-icon{background:rgba(34,160,82,0.15);color:var(--green-400)}
+.ci-label{font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:2px}
+.ci-value{font-weight:600;font-size:0.9rem}
+.social-row{display:flex;gap:10px;margin-top:36px}
+.social-btn{width:44px;height:44px;border-radius:10px;background:var(--gray-100);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--text-muted);transition:all var(--transition)}
+[data-theme="dark"] .social-btn{background:rgba(255,255,255,0.07)}
+.social-btn:hover{background:var(--green-500);color:white;transform:translateY(-3px)}
+.contact-form{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:40px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.form-group label{font-size:0.82rem;font-weight:600;color:var(--text)}
+.form-group input,.form-group textarea,.form-group select{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;font-family:inherit;font-size:0.88rem;color:var(--text);transition:all var(--transition);outline:none}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--green-500);box-shadow:0 0 0 3px rgba(34,160,82,0.12)}
+.form-group input.error,.form-group textarea.error,.form-group select.error{border-color:#ef4444}
+.form-group textarea{resize:vertical;min-height:120px}
+.btn-submit{width:100%;background:var(--green-500);color:white;font-weight:700;font-size:0.95rem;padding:14px;border-radius:12px;transition:all var(--transition);display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px}
+.btn-submit:hover{background:var(--green-600);transform:translateY(-2px);box-shadow:0 8px 24px rgba(34,160,82,0.3)}
+.form-success{display:none;text-align:center;padding:24px;background:var(--green-50);border:1px solid var(--green-100);border-radius:12px;color:var(--green-700);font-weight:600}
+[data-theme="dark"] .form-success{background:rgba(34,160,82,0.1);border-color:rgba(34,160,82,0.2);color:var(--green-300)}
+.form-success.show{display:block}
+
+/* FAQ */
+.faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
+.faq-item{border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all var(--transition)}
+.faq-item.open{border-color:var(--green-400)}
+.faq-question{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;cursor:pointer;font-weight:600;font-size:0.9rem;transition:background var(--transition)}
+.faq-question:hover{background:var(--surface2)}
+.faq-question i{color:var(--green-500);transition:transform var(--transition);flex-shrink:0}
+.faq-item.open .faq-question i{transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s}
+.faq-item.open .faq-answer{max-height:300px;padding:0 22px 18px}
+.faq-answer p{color:var(--text-muted);font-size:0.87rem;line-height:1.65}
+
+/* MAP */
+.map-container{background:var(--surface2);border:1px solid var(--border);border-radius:16px;height:380px;display:flex;align-items:center;justify-content:center}
+.map-overlay{text-align:center;color:var(--text-muted)}
+.map-overlay i{font-size:2.5rem;color:var(--green-500);margin-bottom:12px;display:block}
+.map-pins{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px}
+.map-pin{display:flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:6px 12px;font-size:0.78rem;font-weight:600}
+.map-pin i{color:var(--green-500)}
+
+/* CHATBOT */
+#chatbot{position:fixed;bottom:90px;right:24px;z-index:900;width:340px;max-height:480px;background:var(--surface);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-lg);display:flex;flex-direction:column;overflow:hidden;transform:scale(0);transform-origin:bottom right;transition:transform 0.35s cubic-bezier(0.4,0,0.2,1),opacity 0.35s;opacity:0;pointer-events:none}
+#chatbot.open{transform:scale(1);opacity:1;pointer-events:auto}
+.chat-head{background:linear-gradient(135deg,var(--green-700),var(--green-600));padding:16px 20px;display:flex;align-items:center;gap:12px}
+.chat-head-avatar{width:36px;height:36px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--green-900)}
+.chat-head-info h4{color:white;font-size:0.9rem;font-weight:700}
+.chat-head-info p{color:rgba(255,255,255,0.65);font-size:0.72rem}
+.chat-close{margin-left:auto;color:rgba(255,255,255,0.7);width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;transition:all var(--transition)}
+.chat-close:hover{background:rgba(255,255,255,0.12);color:white}
+.chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.chat-msg{max-width:85%;padding:10px 14px;border-radius:14px;font-size:0.83rem;line-height:1.5}
+.chat-msg.bot{background:var(--surface2);border:1px solid var(--border);align-self:flex-start;border-bottom-left-radius:4px}
+.chat-msg.user{background:var(--green-500);color:white;align-self:flex-end;border-bottom-right-radius:4px}
+.chat-quick{display:flex;flex-wrap:wrap;gap:6px;padding:12px 16px;border-top:1px solid var(--border)}
+.quick-btn{background:var(--green-50);color:var(--green-700);border:1px solid var(--green-100);font-size:0.74rem;padding:6px 11px;border-radius:20px;transition:all var(--transition)}
+[data-theme="dark"] .quick-btn{background:rgba(34,160,82,0.1);color:var(--green-400);border-color:rgba(34,160,82,0.2)}
+.quick-btn:hover{background:var(--green-500);color:white;border-color:var(--green-500)}
+.chat-input-row{display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--border)}
+.chat-input-row input{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:9px 12px;font-family:inherit;font-size:0.83rem;color:var(--text);outline:none;transition:border-color var(--transition)}
+.chat-input-row input:focus{border-color:var(--green-500)}
+.chat-send{width:36px;height:36px;background:var(--green-500);color:white;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all var(--transition)}
+.chat-send:hover{background:var(--green-600)}
+
+/* FABs */
+.fab-group{position:fixed;bottom:24px;right:24px;z-index:901;display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.fab{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:var(--shadow-md);transition:all var(--transition);cursor:pointer}
+.fab-chat{background:var(--green-500);color:white}
+.fab-chat:hover{background:var(--green-600);transform:scale(1.08)}
+.fab-top{background:var(--surface);border:1px solid var(--border);color:var(--text-muted);width:44px;height:44px;font-size:1rem;display:none}
+.fab-top.visible{display:flex}
+.fab-top:hover{border-color:var(--green-500);color:var(--green-500)}
+
+/* FOOTER */
+footer{background:var(--green-900);color:rgba(255,255,255,0.65);padding:64px 24px 32px}
+.footer-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.footer-brand{display:flex;flex-direction:column;gap:16px}
+.footer-logo{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:white;display:flex;align-items:center;gap:8px}
+.footer-brand p{font-size:0.85rem;line-height:1.65;max-width:280px}
+.footer-col h4{color:white;font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:16px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul li a{font-size:0.83rem;transition:color var(--transition)}
+.footer-col ul li a:hover{color:var(--accent)}
+.footer-bottom{max-width:1280px;margin:0 auto;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.footer-bottom p{font-size:0.78rem}
+.footer-bottom-links{display:flex;gap:20px}
+.footer-bottom-links a{font-size:0.78rem;transition:color var(--transition)}
+.footer-bottom-links a:hover{color:var(--accent)}
+
+/* ACCESSIBILITY BAR */
+#a11y-bar{position:fixed;top:68px;left:0;right:0;background:var(--green-900);border-bottom:1px solid rgba(0,232,124,0.12);padding:8px 24px;display:none;z-index:998}
+#a11y-bar.show{display:flex;align-items:center;gap:12px;justify-content:center;flex-wrap:wrap}
+.a11y-btn{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.75);font-size:0.78rem;padding:6px 14px;border-radius:8px;display:flex;align-items:center;gap:6px;transition:all var(--transition)}
+.a11y-btn:hover{background:rgba(0,232,124,0.15);color:var(--accent)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .hero-content{grid-template-columns:1fr;gap:40px}
+  .hero-visual{display:none}
+  .contact-layout{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav-links,.nav-actions .btn-cta-nav{display:none}
+  .hamburger{display:flex}
+  .section{padding:72px 20px}
+  .form-row{grid-template-columns:1fr}
+  .process-steps::before{display:none}
+  .hero-stats{grid-template-columns:1fr 1fr}
+  .counters-grid{grid-template-columns:1fr 1fr}
+  .sep-grid,.stats-grid{grid-template-columns:1fr!important}
+}
+@media(max-width:480px){
+  .footer-grid{grid-template-columns:1fr}
+  .hero-stats{grid-template-columns:1fr}
+  .counters-grid{grid-template-columns:1fr}
+  .hero-btns{flex-direction:column}
+  #chatbot{width:calc(100vw - 48px)}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+body.large-text{font-size:1.1rem}
+body.large-text .section-title{font-size:clamp(2rem,4vw,3.2rem)}
+</style>
+</head>
+<body>
+
+<!-- BARRA DE ACESSIBILIDADE -->
+<div id="a11y-bar" role="toolbar" aria-label="Opções de acessibilidade">
+  <span style="color:rgba(255,255,255,0.5);font-size:0.75rem">ACESSIBILIDADE</span>
+  <button class="a11y-btn" onclick="document.body.classList.toggle('large-text')"><i class="fas fa-text-height"></i> Aumentar Texto</button>
+  <button class="a11y-btn" onclick="toggleGrayscale()"><i class="fas fa-eye"></i> Alto Contraste</button>
+  <button class="a11y-btn" onclick="document.getElementById('a11y-bar').classList.remove('show')"><i class="fas fa-times"></i> Fechar</button>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar" role="navigation" aria-label="Navegação principal">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" onclick="showPage('home');return false;">
+      <span class="dot"></span> Recicla<span style="color:var(--accent)">Brasil</span>
+    </a>
+    <div class="nav-links">
+      <a href="#" data-page="home" class="active" onclick="showPage('home',this);return false;">Início</a>
+      <a href="#" data-page="separacao" onclick="showPage('separacao',this);return false;">Separação</a>
+      <a href="#" data-page="brasil" onclick="showPage('brasil',this);return false;">No Brasil</a>
+      <a href="#" data-page="contato" onclick="showPage('contato',this);return false;">Contato</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-theme" onclick="toggleTheme()" title="Alternar tema" aria-label="Alternar tema claro/escuro">
+        <i class="fas fa-moon" id="theme-icon"></i>
+      </button>
+      <button class="btn-theme" onclick="document.getElementById('a11y-bar').classList.toggle('show')" title="Acessibilidade" aria-label="Opções de acessibilidade">
+        <i class="fas fa-universal-access"></i>
+      </button>
+      <a href="#" class="btn-cta-nav" onclick="showPage('contato');return false;">Participar</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Abrir menu" aria-expanded="false" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MENU MOBILE -->
+<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Menu mobile">
+  <a href="#" onclick="showPage('home',null,true);return false;"><i class="fas fa-home" style="margin-right:8px;color:var(--accent)"></i>Início</a>
+  <a href="#" onclick="showPage('separacao',null,true);return false;"><i class="fas fa-recycle" style="margin-right:8px;color:var(--accent)"></i>Separação de Lixo</a>
+  <a href="#" onclick="showPage('brasil',null,true);return false;"><i class="fas fa-leaf" style="margin-right:8px;color:var(--accent)"></i>Reciclagem no Brasil</a>
+  <a href="#" onclick="showPage('contato',null,true);return false;"><i class="fas fa-envelope" style="margin-right:8px;color:var(--accent)"></i>Contato</a>
+</div>
+
+<!-- ==================== PÁGINA: HOME ==================== -->
+<div class="page-section active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-content">
+      <div>
+        <div class="hero-badge"><i class="fas fa-leaf"></i> Sustentabilidade em Ação</div>
+        <h1>Transformando <span>Resíduos</span> em Futuro</h1>
+        <p>A reciclagem não é apenas separar lixo — é um movimento que protege ecossistemas, gera empregos, economiza energia e constrói cidades mais inteligentes para as próximas gerações.</p>
+        <div class="hero-btns">
+          <a href="#" class="btn-primary" onclick="showPage('separacao');return false;"><i class="fas fa-recycle"></i> Aprenda a Reciclar</a>
+          <a href="#" class="btn-outline" onclick="showPage('brasil');return false;"><i class="fas fa-chart-line"></i> Ver Dados do Brasil</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><span class="hero-stat-num">79M</span><span class="hero-stat-label">Ton. de lixo/ano</span></div>
+          <div class="hero-stat"><span class="hero-stat-num">4%</span><span class="hero-stat-label">Reciclado no Brasil</span></div>
+          <div class="hero-stat"><span class="hero-stat-num">1.000+</span><span class="hero-stat-label">Cooperativas ativas</span></div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-card-stack">
+          <div class="hero-card hero-card-main">
+            <div class="hero-recycle-icon">♻️</div>
+            <h3>Ciclo de Reciclagem</h3>
+            <p>Cada material retorna como recurso valioso</p>
+            <div class="mini-chart">
+              <div class="mini-bar" style="height:40%;background:var(--blue-300)"></div>
+              <div class="mini-bar" style="height:65%;animation-delay:0.1s"></div>
+              <div class="mini-bar" style="height:80%;animation-delay:0.2s"></div>
+              <div class="mini-bar" style="height:55%;animation-delay:0.3s;background:var(--blue-300)"></div>
+              <div class="mini-bar" style="height:90%;animation-delay:0.4s"></div>
+              <div class="mini-bar" style="height:70%;animation-delay:0.5s"></div>
+            </div>
+          </div>
+          <div class="hero-card hero-card-float">
+            <div style="font-size:1.6rem;margin-bottom:6px">🌱</div>
+            <h3 style="font-size:0.85rem">Impacto Positivo</h3>
+            <p>Redução de 30% nas emissões de CO₂</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true"><span>Role para baixo</span><i class="fas fa-chevron-down"></i></div>
+  </section>
+
+  <!-- O QUE É RECICLAGEM -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Fundamentos</div>
+        <h2 class="section-title">O que é <span>Reciclagem</span>?</h2>
+        <p class="section-desc">Reciclagem é o processo de transformar materiais descartados em novos produtos, reduzindo o consumo de matérias-primas, energia e a geração de resíduos nos aterros.</p>
+      </div>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-card-icon">🌱</div>
+          <h3>Benefícios Ambientais</h3>
+          <p>Reduz a extração de recursos naturais, diminui a poluição do solo e água, e contribui para a redução das emissões de gases de efeito estufa.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">💼</div>
+          <h3>Geração de Empregos</h3>
+          <p>O setor de reciclagem emprega mais de 400 mil catadores no Brasil, movimentando uma cadeia produtiva que gera renda e inclusão social.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">⚡</div>
+          <h3>Economia de Energia</h3>
+          <p>Reciclar alumínio consome 95% menos energia que produzir do zero. Papel reciclado usa 40% menos energia que o papel virgem.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">🏙️</div>
+          <h3>Cidades Sustentáveis</h3>
+          <p>Municípios com coleta seletiva eficiente reduzem custos de gestão de resíduos e ampliam a vida útil de seus aterros sanitários.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTADORES -->
+  <section class="counters-section">
+    <div class="container">
+      <div class="section-header center" style="margin-bottom:48px">
+        <div class="section-eyebrow" style="color:var(--green-300);justify-content:center">Números que Importam</div>
+        <h2 class="section-title" style="color:white">O impacto da <span>reciclagem</span></h2>
+      </div>
+      <div class="counters-grid">
+        <div class="counter-item">
+          <span class="counter-num" data-target="79">0</span><span style="font-family:'Syne',sans-serif;font-size:2rem;color:var(--accent)">M</span>
+          <div class="counter-label">Toneladas de resíduos/ano no Brasil</div>
+        </div>
+        <div class="counter-item">
+          <span class="counter-num" data-target="400">0</span><span style="font-family:'Syne',sans-serif;font-size:2rem;color:var(--accent)">k</span>
+          <div class="counter-label">Catadores empregados</div>
+        </div>
+        <div class="counter-item">
+          <span class="counter-num" data-target="95">0</span><span style="font-family:'Syne',sans-serif;font-size:2rem;color:var(--accent)">%</span>
+          <div class="counter-label">Economia de energia no alumínio</div>
+        </div>
+        <div class="counter-item">
+          <span class="counter-num" data-target="1200">0</span><span style="font-family:'Syne',sans-serif;font-size:2rem;color:var(--accent)">+</span>
+          <div class="counter-label">Municípios com coleta seletiva</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-eyebrow">Dúvidas Frequentes</div>
+        <h2 class="section-title">Perguntas sobre <span>Reciclagem</span></h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)" role="button" aria-expanded="false"><span>Por que devo reciclar se não faz diferença individualmente?</span><i class="fas fa-plus" aria-hidden="true"></i></div>
+          <div class="faq-answer"><p>Cada ação individual, somada às de outros cidadãos, cria um impacto coletivo enorme. Se cada brasileiro reciclasse apenas 1 kg por semana, seriam mais de 200 milhões de toneladas recicladas por ano. A mudança começa com um gesto.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)" role="button" aria-expanded="false"><span>O que acontece com o material depois que eu separo?</span><i class="fas fa-plus" aria-hidden="true"></i></div>
+          <div class="faq-answer"><p>O material coletado vai para centros de triagem, onde é separado por tipo, prensado e vendido para indústrias. Lá, é transformado em matéria-prima para novos produtos — como garrafas PET que viram camisetas de poliéster.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)" role="button" aria-expanded="false"><span>Posso reciclar embalagens sujas?</span><i class="fas fa-plus" aria-hidden="true"></i></div>
+          <div class="faq-answer"><p>Não. Embalagens com restos de alimentos podem contaminar todo o lote reciclável. Sempre lave as embalagens antes de descartar. Não é necessário higienizar com sabão — basta enxaguar com água.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)" role="button" aria-expanded="false"><span>Vidro pode ser reciclado infinitamente?</span><i class="fas fa-plus" aria-hidden="true"></i></div>
+          <div class="faq-answer"><p>Sim! O vidro é um dos materiais mais vantajosos para reciclar: ele pode ser fundido e remodelado indefinidamente sem perder qualidade. Reciclar vidro economiza até 30% de energia em comparação com a produção do zero.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)" role="button" aria-expanded="false"><span>Onde descartar pilhas, baterias e eletrônicos?</span><i class="fas fa-plus" aria-hidden="true"></i></div>
+          <div class="faq-answer"><p>Esses materiais contêm substâncias tóxicas e precisam de descarte especializado. Procure pontos de coleta em supermercados, lojas de eletroeletrônicos ou postos de saúde. Nunca jogue no lixo comum ou enterre.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== PÁGINA: SEPARAÇÃO ==================== -->
+<div class="page-section" id="page-separacao">
+  <section class="section" style="padding-top:100px">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Guia Prático</div>
+        <h2 class="section-title">Separar Corretamente <span>Faz a Diferença</span></h2>
+        <p class="section-desc">A coleta seletiva organiza os resíduos por tipo de material, facilitando o processo de reciclagem. Conheça as cores e o que vai em cada lixeira.</p>
+      </div>
+
+      <h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:20px;font-size:1.1rem">Tabela de Cores da Coleta Seletiva</h3>
+      <div class="color-cards">
+        <div class="color-card cc-blue">
+          <div class="color-card-icon">📄</div>
+          <h3>Azul</h3>
+          <p>Papel e Papelão</p>
+        </div>
+        <div class="color-card cc-red">
+          <div class="color-card-icon">🧴</div>
+          <h3>Vermelho</h3>
+          <p>Plástico</p>
+        </div>
+        <div class="color-card cc-green">
+          <div class="color-card-icon">🍾</div>
+          <h3>Verde</h3>
+          <p>Vidro</p>
+        </div>
+        <div class="color-card cc-yellow">
+          <div class="color-card-icon">🥫</div>
+          <h3>Amarelo</h3>
+          <p>Metal</p>
+        </div>
+        <div class="color-card cc-brown">
+          <div class="color-card-icon">🍃</div>
+          <h3>Marrom</h3>
+          <p>Orgânico</p>
+        </div>
+        <div class="color-card cc-orange">
+          <div class="color-card-icon">⚠️</div>
+          <h3>Laranja</h3>
+          <p>Resíduos Perigosos</p>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:56px;align-items:start" class="sep-grid">
+        <div>
+          <h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:28px;font-size:1.1rem">Como Separar Corretamente</h3>
+          <div class="steps-timeline">
+            <div class="step-item" data-step="1">
+              <h4>Lave as embalagens</h4>
+              <p>Enxágue garrafas, latas e potes com água antes de separar. Resíduos contaminados de alimentos podem inutilizar um lote inteiro de recicláveis.</p>
+            </div>
+            <div class="step-item" data-step="2">
+              <h4>Separe por material</h4>
+              <p>Papel, plástico, vidro, metal e orgânicos não devem ser misturados. Cada tipo segue um processo diferente de reciclagem.</p>
+            </div>
+            <div class="step-item" data-step="3">
+              <h4>Compacte quando possível</h4>
+              <p>Amasse caixas de papelão e garrafas PET para economizar espaço. Isso facilita o transporte e aumenta a eficiência da coleta.</p>
+            </div>
+            <div class="step-item" data-step="4">
+              <h4>Descarte no dia certo</h4>
+              <p>Verifique o calendário de coleta seletiva da sua cidade. Materiais expostos antes do dia atraem vetores e comprometem a qualidade.</p>
+            </div>
+            <div class="step-item" data-step="5">
+              <h4>Pilhas, baterias e eletrônicos</h4>
+              <p>Nunca no lixo comum! Leve a pontos de coleta específicos em supermercados, farmácias ou lojas de eletrônicos.</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:24px;font-size:1.1rem">Cuidados Importantes</h3>
+          <div class="care-grid" style="grid-template-columns:1fr">
+            <div class="care-card">
+              <div class="care-card-icon"><i class="fas fa-tint"></i></div>
+              <div><h4>Lavar Embalagens</h4><p>Elimina restos de alimentos que contaminariam o material e inviabilizariam a reciclagem.</p></div>
+            </div>
+            <div class="care-card">
+              <div class="care-card-icon"><i class="fas fa-ban"></i></div>
+              <div><h4>Não Misturar Resíduos</h4><p>Orgânicos misturados com recicláveis destroem lotes inteiros. Separe sempre.</p></div>
+            </div>
+            <div class="care-card">
+              <div class="care-card-icon"><i class="fas fa-battery-full"></i></div>
+              <div><h4>Pilhas e Baterias</h4><p>Contêm metais pesados extremamente tóxicos. Entregue em pontos de coleta autorizados.</p></div>
+            </div>
+            <div class="care-card">
+              <div class="care-card-icon"><i class="fas fa-laptop"></i></div>
+              <div><h4>Eletrônicos (E-Lixo)</h4><p>Celulares, computadores e TVs têm componentes valiosos e tóxicos. Procure o fabricante ou um PGRS.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-eyebrow">Teste seus Conhecimentos</div>
+        <h2 class="section-title">Quiz de <span>Reciclagem</span></h2>
+        <p class="section-desc">Responda as perguntas e descubra o quanto você já sabe sobre reciclagem!</p>
+      </div>
+      <div class="quiz-wrap">
+        <div id="quiz-container"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== PÁGINA: BRASIL ==================== -->
+<div class="page-section" id="page-brasil">
+  <section class="section" style="padding-top:100px">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Panorama Nacional</div>
+        <h2 class="section-title">Como o Brasil Está <span>Evoluindo</span></h2>
+        <p class="section-desc">O Brasil tem um dos maiores volumes de resíduos sólidos urbanos do mundo. Conheça como funciona o sistema de reciclagem e o que está mudando.</p>
+      </div>
+
+      <h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:36px;font-size:1.1rem">Caminho do Material Reciclável</h3>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="ps-circle">🏠</div>
+          <h4>Geração</h4>
+          <p>Resíduo gerado nas casas, comércios e indústrias</p>
+        </div>
+        <div class="process-step">
+          <div class="ps-circle">🗑️</div>
+          <h4>Separação</h4>
+          <p>Cidadão separa os materiais em casa</p>
+        </div>
+        <div class="process-step">
+          <div class="ps-circle">🚛</div>
+          <h4>Coleta</h4>
+          <p>Veículo de coleta seletiva recolhe os materiais</p>
+        </div>
+        <div class="process-step">
+          <div class="ps-circle">🏭</div>
+          <h4>Triagem</h4>
+          <p>Centro de triagem separa e classifica os tipos</p>
+        </div>
+        <div class="process-step">
+          <div class="ps-circle">⚙️</div>
+          <h4>Processamento</h4>
+          <p>Indústria transforma em nova matéria-prima</p>
+        </div>
+        <div class="process-step">
+          <div class="ps-circle">🛍️</div>
+          <h4>Produto Novo</h4>
+          <p>Material volta ao mercado como produto novo</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section section-alt">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start" class="stats-grid">
+        <div>
+          <div class="section-eyebrow">Dados e Indicadores</div>
+          <h2 class="section-title">Reciclagem no <span>Brasil</span></h2>
+          <p class="section-desc" style="margin-bottom:36px">Apesar do crescimento, o Brasil ainda recicla uma pequena fração do seu potencial. Veja os números por categoria de material.</p>
+          <div class="stats-bars">
+            <div class="stat-bar-item">
+              <label>Alumínio <span>97%</span></label>
+              <div class="bar-track"><div class="bar-fill" data-width="97"></div></div>
+            </div>
+            <div class="stat-bar-item">
+              <label>Papelão <span>80%</span></label>
+              <div class="bar-track"><div class="bar-fill" data-width="80"></div></div>
+            </div>
+            <div class="stat-bar-item">
+              <label>Papel <span>47%</span></label>
+              <div class="bar-track"><div class="bar-fill" data-width="47"></div></div>
+            </div>
+            <div class="stat-bar-item">
+              <label>PET (Plástico) <span>55%</span></label>
+              <div class="bar-track"><div class="bar-fill" data-width="55"></div></div>
+            </div>
+            <div class="stat-bar-item">
+              <label>Vidro <span>47%</span></label>
+              <div class="bar-track"><div class="bar-fill" data-width="47"></div></div>
+            </div>
+            <div class="stat-bar-item">
+              <label>Resíduos Orgânicos <span>2%</span></label>
+              <div class="bar-track"><div class="bar-fill" data-width="2"></div></div>
+            </div>
+          </div>
+          <p style="font-size:0.75rem;color:var(--text-muted);margin-top:16px">Fontes: CEMPRE, ABRELPE, ABAL (2023)</p>
+        </div>
+        <div>
+          <div class="section-eyebrow">Por Região</div>
+          <h2 class="section-title">Desafios <span>Regionais</span></h2>
+          <p class="section-desc" style="margin-bottom:36px">A coleta seletiva ainda é concentrada no Sul e Sudeste. Norte e Nordeste têm muito espaço para crescer.</p>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:center;gap:12px;padding:14px;background:var(--surface);border-radius:10px;border:1px solid var(--border)">
+              <span style="font-size:1.4rem">🟢</span>
+              <div style="flex:1"><strong style="font-size:0.9rem">Sul & Sudeste</strong><br><span style="font-size:0.8rem;color:var(--text-muted)">Maior cobertura de coleta seletiva — 72% dos municípios</span></div>
+              <span style="font-family:'Syne',sans-serif;font-weight:800;color:var(--green-500)">72%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:14px;background:var(--surface);border-radius:10px;border:1px solid var(--border)">
+              <span style="font-size:1.4rem">🟡</span>
+              <div style="flex:1"><strong style="font-size:0.9rem">Centro-Oeste</strong><br><span style="font-size:0.8rem;color:var(--text-muted)">Crescimento acelerado nos últimos 5 anos</span></div>
+              <span style="font-family:'Syne',sans-serif;font-weight:800;color:#f59e0b">48%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:14px;background:var(--surface);border-radius:10px;border:1px solid var(--border)">
+              <span style="font-size:1.4rem">🔴</span>
+              <div style="flex:1"><strong style="font-size:0.9rem">Norte & Nordeste</strong><br><span style="font-size:0.8rem;color:var(--text-muted)">Infraestrutura em desenvolvimento</span></div>
+              <span style="font-family:'Syne',sans-serif;font-weight:800;color:#ef4444">24%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECNOLOGIAS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-eyebrow">Inovação</div>
+        <h2 class="section-title">Tecnologias do <span>Futuro</span></h2>
+        <p class="section-desc">A reciclagem está sendo revolucionada por inteligência artificial, robótica e IoT. Veja o que já está em uso e o que está por vir.</p>
+      </div>
+      <div class="tech-grid">
+        <div class="tech-card">
+          <div class="tech-card-icon"><i class="fas fa-brain"></i></div>
+          <h3>Inteligência Artificial</h3>
+          <p>Sistemas de visão computacional identificam e classificam materiais com até 98% de precisão, superando a triagem manual e reduzindo erros de separação.</p>
+          <span class="tech-tag">Em uso</span>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card-icon"><i class="fas fa-robot"></i></div>
+          <h3>Robôs Classificadores</h3>
+          <p>Braços robóticos equipados com câmeras e IA selecionam até 80 itens por minuto nas esteiras de triagem, aumentando a eficiência em 300%.</p>
+          <span class="tech-tag">Em expansão</span>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card-icon"><i class="fas fa-trash-alt"></i></div>
+          <h3>Lixeiras Inteligentes</h3>
+          <p>Coletores com sensores que compactam resíduos automaticamente e avisam às equipes de coleta quando estão cheios, otimizando rotas.</p>
+          <span class="tech-tag">Disponível</span>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card-icon"><i class="fas fa-wifi"></i></div>
+          <h3>Sensores IoT</h3>
+          <p>Rede de sensores monitoram o volume de descarte em tempo real por bairro, permitindo ajustar a frequência de coleta e reduzir custos operacionais.</p>
+          <span class="tech-tag">Piloto</span>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card-icon"><i class="fas fa-sync-alt"></i></div>
+          <h3>Economia Circular</h3>
+          <p>Modelo econômico que elimina o conceito de "lixo" — todo resíduo se torna insumo para outro processo produtivo, fechando o ciclo de materiais.</p>
+          <span class="tech-tag">Crescendo</span>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card-icon"><i class="fas fa-cube"></i></div>
+          <h3>Gêmeos Digitais</h3>
+          <p>Réplicas virtuais de aterros e centros de triagem permitem simular cenários, prever falhas e otimizar toda a cadeia de gestão de resíduos.</p>
+          <span class="tech-tag">Futuro próximo</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXEMPLOS DE SUCESSO -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-eyebrow">Casos Reais</div>
+        <h2 class="section-title">Exemplos de <span>Sucesso</span></h2>
+      </div>
+      <div class="success-grid">
+        <div class="success-card">
+          <div class="success-card-top"></div>
+          <div class="success-card-body">
+            <h4>Curitiba – PR</h4>
+            <p>Pioneira na coleta seletiva no Brasil desde 1989, Curitiba recicla mais de 22% dos resíduos domiciliares e é referência mundial em gestão urbana.</p>
+            <div class="success-card-badge"><i class="fas fa-star"></i> Referência Mundial</div>
+          </div>
+        </div>
+        <div class="success-card">
+          <div class="success-card-top"></div>
+          <div class="success-card-body">
+            <h4>Cooperativa COOPAMARE – SP</h4>
+            <p>Primeira cooperativa de catadores do Brasil, fundada em 1989 em São Paulo. Formaliza o trabalho de catadores e garante renda digna e participação na cadeia produtiva.</p>
+            <div class="success-card-badge"><i class="fas fa-star"></i> Inovação Social</div>
+          </div>
+        </div>
+        <div class="success-card">
+          <div class="success-card-top"></div>
+          <div class="success-card-body">
+            <h4>Volta Redonda – RJ</h4>
+            <p>Com programa robusto de educação ambiental, a cidade conseguiu que 90% da população participe ativamente da coleta seletiva.</p>
+            <div class="success-card-badge"><i class="fas fa-star"></i> Alto Engajamento</div>
+          </div>
+        </div>
+        <div class="success-card">
+          <div class="success-card-top"></div>
+          <div class="success-card-body">
+            <h4>Natura – Compromisso 2030</h4>
+            <p>Empresa brasileira que comprometeu 100% de suas embalagens recicláveis ou reutilizáveis até 2030, e já usa 30% de material pós-consumo na linha atual.</p>
+            <div class="success-card-badge"><i class="fas fa-star"></i> Sustentabilidade Corporativa</div>
+          </div>
+        </div>
+        <div class="success-card">
+          <div class="success-card-top"></div>
+          <div class="success-card-body">
+            <h4>Projeto Reciclar para Brincar</h4>
+            <p>Iniciativa que transforma resíduos plásticos coletados por catadores em brinquedos para escolas públicas, conectando reciclagem com educação.</p>
+            <div class="success-card-badge"><i class="fas fa-star"></i> Impacto Educacional</div>
+          </div>
+        </div>
+        <div class="success-card">
+          <div class="success-card-top"></div>
+          <div class="success-card-body">
+            <h4>Ecociclo – Gestão Inteligente</h4>
+            <p>Startup brasileira que usa IA e big data para otimizar rotas de coleta seletiva em capitais, reduzindo custos operacionais em até 35%.</p>
+            <div class="success-card-badge"><i class="fas fa-star"></i> Tecnologia Nacional</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== PÁGINA: CONTATO ==================== -->
+<div class="page-section" id="page-contato">
+  <section class="section" style="padding-top:100px">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Participe</div>
+        <h2 class="section-title">Faça Parte da <span>Mudança</span></h2>
+        <p class="section-desc">Entre em contato, tire dúvidas, sugira pautas ou saiba como participar de projetos de reciclagem na sua região.</p>
+      </div>
+      <div class="contact-layout">
+        <div>
+          <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.7;margin-bottom:28px">A reciclagem é um esforço coletivo. Se você tem dúvidas sobre onde descartar materiais, quer divulgar um projeto ou simplesmente quer aprender mais, estamos aqui.</p>
+          <div class="contact-info-list">
+            <div class="contact-info-item">
+              <div class="ci-icon"><i class="fas fa-building"></i></div>
+              <div><div class="ci-label">Ministério do Meio Ambiente</div><div class="ci-value">mma.gov.br / 0800 061 8080</div></div>
+            </div>
+            <div class="contact-info-item">
+              <div class="ci-icon"><i class="fas fa-leaf"></i></div>
+              <div><div class="ci-label">IBAMA</div><div class="ci-value">ibama.gov.br / 0800 618 080</div></div>
+            </div>
+            <div class="contact-info-item">
+              <div class="ci-icon"><i class="fas fa-recycle"></i></div>
+              <div><div class="ci-label">CEMPRE</div><div class="ci-value">cempre.org.br</div></div>
+            </div>
+            <div class="contact-info-item">
+              <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div><div class="ci-label">Pontos de Coleta</div><div class="ci-value">coletaseletiva.info</div></div>
+            </div>
+          </div>
+          <div class="social-row">
+            <a href="#" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div>
+          <div class="contact-form">
+            <h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:24px;font-size:1.15rem">Enviar Mensagem</h3>
+            <div class="form-success" id="form-success" role="alert">
+              <i class="fas fa-check-circle" style="font-size:1.5rem;color:var(--green-600);display:block;margin-bottom:8px"></i>
+              Mensagem enviada com sucesso! Responderemos em até 48 horas.
+            </div>
+            <div id="contact-form">
+              <div class="form-row">
+                <div class="form-group"><label for="f-nome">Nome Completo *</label><input type="text" id="f-nome" placeholder="Seu nome" autocomplete="name"></div>
+                <div class="form-group"><label for="f-email">E-mail *</label><input type="email" id="f-email" placeholder="seu@email.com" autocomplete="email"></div>
+              </div>
+              <div class="form-group"><label for="f-tel">Telefone (opcional)</label><input type="tel" id="f-tel" placeholder="(11) 99999-9999" autocomplete="tel"></div>
+              <div class="form-group">
+                <label for="f-assunto">Assunto</label>
+                <select id="f-assunto">
+                  <option value="">Selecione o assunto</option>
+                  <option>Dúvida sobre reciclagem</option>
+                  <option>Ponto de coleta</option>
+                  <option>Cooperativas</option>
+                  <option>Parceria ou projeto</option>
+                  <option>Sugestão de conteúdo</option>
+                  <option>Outro</option>
+                </select>
+              </div>
+              <div class="form-group"><label for="f-msg">Mensagem *</label><textarea id="f-msg" placeholder="Escreva sua mensagem aqui..."></textarea></div>
+              <button class="btn-submit" onclick="submitForm()"><i class="fas fa-paper-plane"></i> Enviar Mensagem</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAPA -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-eyebrow">Localização</div>
+        <h2 class="section-title">Pontos de <span>Coleta</span></h2>
+        <p class="section-desc">Encontre o ponto de coleta seletiva mais próximo de você.</p>
+      </div>
+      <div class="map-container">
+        <div class="map-overlay">
+          <i class="fas fa-map-marked-alt"></i>
+          <p style="font-weight:600;font-size:1rem;margin-bottom:8px">Mapa Interativo de Pontos de Coleta</p>
+          <p>Em breve — integração com Google Maps para localizar<br>cooperativas e ecopontos na sua cidade.</p>
+          <div class="map-pins">
+            <div class="map-pin"><i class="fas fa-map-pin"></i> Curitiba</div>
+            <div class="map-pin"><i class="fas fa-map-pin"></i> São Paulo</div>
+            <div class="map-pin"><i class="fas fa-map-pin"></i> Belo Horizonte</div>
+            <div class="map-pin"><i class="fas fa-map-pin"></i> Porto Alegre</div>
+            <div class="map-pin"><i class="fas fa-map-pin"></i> Brasília</div>
+            <div class="map-pin"><i class="fas fa-map-pin"></i> Recife</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo"><span style="color:var(--accent)">♻</span> ReciclaBrasil</div>
+      <p>Portal educacional e informativo sobre reciclagem, sustentabilidade e tecnologias ambientais no Brasil. Construindo um futuro mais verde para todos.</p>
+      <div class="social-row" style="margin-top:0">
+        <a href="#" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="#" class="social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navegação</h4>
+      <ul>
+        <li><a href="#" onclick="showPage('home');return false;">Início</a></li>
+        <li><a href="#" onclick="showPage('separacao');return false;">Separação de Lixo</a></li>
+        <li><a href="#" onclick="showPage('brasil');return false;">No Brasil</a></li>
+        <li><a href="#" onclick="showPage('contato');return false;">Contato</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Recursos</h4>
+      <ul>
+        <li><a href="#" onclick="showPage('separacao');return false;">Quiz de Reciclagem</a></li>
+        <li><a href="#" onclick="showPage('separacao');return false;">Guia de Separação</a></li>
+        <li><a href="#" onclick="showPage('contato');return false;">Pontos de Coleta</a></li>
+        <li><a href="#" onclick="showPage('contato');return false;">Cooperativas</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Institucional</h4>
+      <ul>
+        <li><a href="https://www.gov.br/mma" target="_blank" rel="noopener">Min. do Meio Ambiente</a></li>
+        <li><a href="https://www.ibama.gov.br" target="_blank" rel="noopener">IBAMA</a></li>
+        <li><a href="https://www.cempre.org.br" target="_blank" rel="noopener">CEMPRE</a></li>
+        <li><a href="https://www.abrelpe.org.br" target="_blank" rel="noopener">ABRELPE</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 ReciclaBrasil — Projeto Educacional. Todos os direitos reservados.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Política de Privacidade</a>
+      <a href="#">Termos de Uso</a>
+      <a href="#">Acessibilidade</a>
+    </div>
+  </div>
+</footer>
+
+<!-- CHATBOT -->
+<div id="chatbot" role="dialog" aria-label="Chat com EcoBot" aria-hidden="true">
+  <div class="chat-head">
+    <div class="chat-head-avatar">🌿</div>
+    <div class="chat-head-info"><h4>EcoBot</h4><p>Assistente Ambiental • Online</p></div>
+    <button class="chat-close" onclick="toggleChat()" aria-label="Fechar chat"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="chat-messages" id="chat-messages" aria-live="polite">
+    <div class="chat-msg bot">Olá! Sou o EcoBot 🌱 Posso ajudar com dúvidas sobre reciclagem, coleta seletiva e sustentabilidade. Como posso ajudar?</div>
+  </div>
+  <div class="chat-quick">
+    <button class="quick-btn" onclick="chatSend('Como separar o lixo?')">Como separar?</button>
+    <button class="quick-btn" onclick="chatSend('Onde descartar eletrônicos?')">Eletrônicos</button>
+    <button class="quick-btn" onclick="chatSend('O que é coleta seletiva?')">Coleta seletiva</button>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chat-input" placeholder="Digite sua dúvida..." onkeydown="if(event.key==='Enter')chatSend()" aria-label="Mensagem para o EcoBot">
+    <button class="chat-send" onclick="chatSend()" aria-label="Enviar mensagem"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>
+
+<!-- FABs -->
+<div class="fab-group">
+  <button class="fab fab-top" id="fab-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Voltar ao topo" title="Voltar ao topo"><i class="fas fa-chevron-up"></i></button>
+  <button class="fab fab-chat" onclick="toggleChat()" aria-label="Falar com EcoBot" id="chat-fab" title="Falar com EcoBot"><i class="fas fa-comments"></i></button>
+</div>
+
+<script>
+// ── TEMA ──────────────────────────────────────────────────────────────
+(function() {
+  const saved = localStorage.getItem('rb-theme') || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+})();
+
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  const next = isDark ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('rb-theme', next);
+  document.getElementById('theme-icon').className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+}
+
+function toggleGrayscale() {
+  document.body.style.filter = document.body.style.filter ? '' : 'grayscale(1)';
+}
+
+// Sincroniza ícone ao carregar
+document.addEventListener('DOMContentLoaded', function() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  document.getElementById('theme-icon').className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+});
+
+// ── NAVEGAÇÃO ─────────────────────────────────────────────────────────
+function showPage(page, linkEl, closeMenu) {
+  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('data-page') === page);
+  });
+
+  window.scrollTo({top: 0, behavior: 'instant'});
+
+  if (closeMenu) {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').setAttribute('aria-expanded', 'false');
+  }
+
+  if (page === 'brasil') initBars();
+  if (page === 'home') initCounters();
+}
+
+// ── SCROLL ────────────────────────────────────────────────────────────
+window.addEventListener('scroll', function() {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  document.getElementById('fab-top').classList.toggle('visible', window.scrollY > 400);
+});
+
+// ── HAMBURGER ─────────────────────────────────────────────────────────
+function toggleMenu() {
+  const m = document.getElementById('mobileMenu');
+  const h = document.getElementById('hamburger');
+  const open = m.classList.toggle('open');
+  h.setAttribute('aria-expanded', String(open));
+}
+
+// ── CONTADORES ────────────────────────────────────────────────────────
+let countersRan = false;
+function initCounters() {
+  if (countersRan) return;
+  countersRan = true;
+  document.querySelectorAll('.counter-num[data-target]').forEach(el => {
+    const target = +el.getAttribute('data-target');
+    let current = 0;
+    const step = target / 60;
+    const timer = setInterval(function() {
+      current = Math.min(current + step, target);
+      el.textContent = Math.floor(current).toLocaleString('pt-BR');
+      if (current >= target) clearInterval(timer);
+    }, 25);
+  });
+}
+
+// ── BARRAS DE PROGRESSO ───────────────────────────────────────────────
+let barsRan = false;
+function initBars() {
+  if (barsRan) return;
+  barsRan = true;
+  setTimeout(function() {
+    document.querySelectorAll('.bar-fill').forEach(function(bar) {
+      const w = +bar.getAttribute('data-width') / 100;
+      bar.style.transform = 'scaleX(' + w + ')';
+    });
+  }, 300);
+}
+
+// ── FAQ ───────────────────────────────────────────────────────────────
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  document.querySelectorAll('.faq-question').forEach(q => q.setAttribute('aria-expanded', 'false'));
+  if (!wasOpen) {
+    item.classList.add('open');
+    el.setAttribute('aria-expanded', 'true');
+  }
+}
+
+// ── QUIZ ──────────────────────────────────────────────────────────────
+const quizData = [
+  {
+    q: 'Qual cor de lixeira é destinada ao papel e papelão?',
+    opts: ['Vermelho', 'Amarelo', 'Azul', 'Verde'],
+    correct: 2,
+    exp: 'Azul é a cor padrão para papel e papelão na coleta seletiva brasileira (CONAMA).'
+  },
+  {
+    q: 'Qual material pode ser reciclado indefinidamente sem perder qualidade?',
+    opts: ['Plástico', 'Papel', 'Vidro', 'Borracha'],
+    correct: 2,
+    exp: 'O vidro pode ser fundido e remodelado infinitas vezes sem perder suas propriedades.'
+  },
+  {
+    q: 'Reciclar alumínio economiza aproximadamente quanto de energia em relação à produção do zero?',
+    opts: ['20%', '50%', '75%', '95%'],
+    correct: 3,
+    exp: 'Reciclar alumínio consome até 95% menos energia que extrair e processar bauxita para produzir alumínio virgem.'
+  },
+  {
+    q: 'O que fazer com embalagens antes de descartá-las na coleta seletiva?',
+    opts: ['Deixar com restos de alimento', 'Lavar e enxaguar', 'Amassá-las sem lavar', 'Dobrar e deixar inteiras'],
+    correct: 1,
+    exp: 'Embalagens devem ser enxaguadas para remover restos que poderiam contaminar e inutilizar o lote reciclável.'
+  },
+  {
+    q: 'Onde devem ser descartadas pilhas e baterias usadas?',
+    opts: ['Lixo comum', 'Coleta seletiva normal', 'Pontos de coleta especializados', 'Enterradas no jardim'],
+    correct: 2,
+    exp: 'Pilhas e baterias contêm metais pesados tóxicos e precisam ir a pontos de coleta específicos em lojas, supermercados e postos de saúde.'
+  }
+];
+
+let qIndex = 0, score = 0, answered = false;
+
+function renderQuiz() {
+  const c = document.getElementById('quiz-container');
+  if (!c) return;
+
+  if (qIndex >= quizData.length) {
+    const emoji = score >= 4 ? '🏆' : score >= 2 ? '😊' : '📚';
+    const msg = score >= 4
+      ? 'Parabéns! Você é um expert em reciclagem!'
+      : score >= 2
+      ? 'Bom trabalho! Continue aprendendo.'
+      : 'Continue estudando — você está progredindo!';
+    c.innerHTML = '<div style="text-align:center;padding:20px">'
+      + '<div style="font-size:3rem;margin-bottom:12px">' + emoji + '</div>'
+      + '<h3 style="font-family:\'Syne\',sans-serif;font-size:1.3rem;margin-bottom:8px">Você acertou ' + score + ' de ' + quizData.length + '!</h3>'
+      + '<p style="color:var(--text-muted);margin-bottom:24px">' + msg + '</p>'
+      + '<button class="btn-primary" onclick="qIndex=0;score=0;renderQuiz()"><i class="fas fa-redo"></i> Tentar Novamente</button>'
+      + '</div>';
+    return;
+  }
+
+  const d = quizData[qIndex];
+  answered = false;
+  const letters = 'ABCD';
+  const optsHTML = d.opts.map(function(o, i) {
+    return '<div class="quiz-opt" onclick="answerQuiz(' + i + ')" id="qopt' + i + '" role="button" tabindex="0" '
+      + 'onkeydown="if(event.key===\'Enter\'||event.key===\' \')answerQuiz(' + i + ')">'
+      + '<span class="quiz-opt-letter">' + letters[i] + '</span>' + o + '</div>';
+  }).join('');
+
+  const dots = '●'.repeat(qIndex + 1) + '○'.repeat(quizData.length - qIndex - 1);
+
+  c.innerHTML = '<div class="quiz-q">Pergunta ' + (qIndex + 1) + ' de ' + quizData.length + ': ' + d.q + '</div>'
+    + '<div class="quiz-opts">' + optsHTML + '</div>'
+    + '<div class="quiz-feedback" id="quiz-feedback"></div>'
+    + '<div class="quiz-nav">'
+    + '<span class="quiz-progress">' + dots + '</span>'
+    + '<button class="btn-quiz-next" onclick="nextQuiz()" id="quiz-next" style="display:none">Próxima <i class="fas fa-arrow-right"></i></button>'
+    + '</div>';
+}
+
+function answerQuiz(i) {
+  if (answered) return;
+  answered = true;
+  const d = quizData[qIndex];
+  const fb = document.getElementById('quiz-feedback');
+  const chosen = document.getElementById('qopt' + i);
+  const correct = document.getElementById('qopt' + d.correct);
+
+  chosen.classList.add(i === d.correct ? 'correct' : 'wrong');
+  if (i !== d.correct) correct.classList.add('correct');
+  if (i === d.correct) score++;
+
+  fb.textContent = (i === d.correct ? '✓ Correto! ' : '✗ Incorreto. ') + d.exp;
+  fb.className = 'quiz-feedback show ' + (i === d.correct ? 'ok' : 'err');
+  document.getElementById('quiz-next').style.display = 'inline-flex';
+}
+
+function nextQuiz() { qIndex++; renderQuiz(); }
+
+// ── CHATBOT ───────────────────────────────────────────────────────────
+const chatResponses = [
+  {
+    keys: ['separa', 'lixo', 'cor', 'lixeira'],
+    resp: 'Para separar o lixo: 🔵 Azul = Papel | 🔴 Vermelho = Plástico | 🟢 Verde = Vidro | 🟡 Amarelo = Metal | 🟤 Marrom = Orgânico. Lembre-se de lavar as embalagens antes!'
+  },
+  {
+    keys: ['eletronico', 'computador', 'celular', 'tv', 'e-lixo', 'e lixo'],
+    resp: 'Eletrônicos (celulares, computadores, TVs) devem ser levados a pontos de coleta específicos. Lojas como Magazine Luiza e Casas Bahia geralmente aceitam. Nunca jogue no lixo comum!'
+  },
+  {
+    keys: ['pilha', 'bateria'],
+    resp: 'Pilhas e baterias contêm metais pesados e devem ir a pontos de coleta em supermercados, lojas de eletrônicos ou farmácias. Procure no site da ABINEE os pontos mais próximos.'
+  },
+  {
+    keys: ['coleta seletiva', 'coleta', 'seletiva'],
+    resp: 'A coleta seletiva é o sistema de recolhimento separado dos resíduos por tipo (papel, plástico, vidro, metal). No Brasil, mais de 1.200 municípios possuem este serviço.'
+  },
+  {
+    keys: ['aluminio', 'lata', 'alum'],
+    resp: 'O alumínio é o campeão da reciclagem! Reciclar uma lata economiza 95% da energia necessária para produzir alumínio do zero. O Brasil recicla 97% das latas de alumínio.'
+  },
+  {
+    keys: ['plastico', 'pet', 'garrafa'],
+    resp: 'O plástico vai na lixeira VERMELHA. Garrafas PET, embalagens e sacolas são recicláveis. Lave antes de descartar! Canudos, esponjas e isopor geralmente não são aceitos.'
+  },
+  {
+    keys: ['vidro'],
+    resp: 'O vidro vai na lixeira VERDE. Ele pode ser reciclado infinitas vezes! Cuidado com espelhos, vidros temperados e ampolas — esses não são aceitos na coleta comum.'
+  },
+  {
+    keys: ['organico', 'comida', 'alimento', 'restos'],
+    resp: 'Resíduos orgânicos (comida, cascas, folhas) vão na lixeira MARROM. Se você tem jardim, pode fazer compostagem em casa — é ótimo para plantas e reduz o volume de lixo!'
+  }
+];
+
+function normalizeText(text) {
+  return text.toLowerCase()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '');
+}
+
+function toggleChat() {
+  const chat = document.getElementById('chatbot');
+  const fab = document.getElementById('chat-fab');
+  const open = chat.classList.toggle('open');
+  chat.setAttribute('aria-hidden', String(!open));
+  fab.querySelector('i').className = open ? 'fas fa-times' : 'fas fa-comments';
+  if (open) document.getElementById('chat-input').focus();
+}
+
+function chatSend(msg) {
+  const input = document.getElementById('chat-input');
+  const text = (msg || input.value).trim();
+  if (!text) return;
+  input.value = '';
+  addMsg(text, 'user');
+
+  setTimeout(function() {
+    const normalized = normalizeText(text);
+    let resp = 'Boa pergunta! Para informações detalhadas sobre reciclagem, explore as seções do nosso site. Você também pode acessar o site do Ministério do Meio Ambiente em mma.gov.br 🌿';
+    for (let i = 0; i < chatResponses.length; i++) {
+      if (chatResponses[i].keys.some(function(k) { return normalized.includes(k); })) {
+        resp = chatResponses[i].resp;
+        break;
+      }
+    }
+    addMsg(resp, 'bot');
+  }, 600);
+}
+
+function addMsg(text, type) {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'chat-msg ' + type;
+  div.textContent = text;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+// ── FORMULÁRIO ────────────────────────────────────────────────────────
+function submitForm() {
+  const nome  = document.getElementById('f-nome');
+  const email = document.getElementById('f-email');
+  const msg   = document.getElementById('f-msg');
+
+  [nome, email, msg].forEach(function(el) { el.classList.remove('error'); });
+
+  let valid = true;
+  if (!nome.value.trim())  { nome.classList.add('error');  valid = false; }
+  if (!msg.value.trim())   { msg.classList.add('error');   valid = false; }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email.value.trim() || !emailRegex.test(email.value)) {
+    email.classList.add('error');
+    valid = false;
+  }
+
+  if (!valid) {
+    alert('Por favor, preencha corretamente os campos obrigatórios (*).');
+    return;
+  }
+
+  document.getElementById('contact-form').style.display = 'none';
+  document.getElementById('form-success').classList.add('show');
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+  initCounters();
+  renderQuiz();
+});
+</script>
+</body>
+</html>
