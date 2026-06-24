@@ -300,7 +300,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .counter-label { color: rgba(255,255,255,0.55); font-size: 0.82rem; margin-top: 8px; text-transform: uppercase; letter-spacing: 0.06em; }
 
 /* ── COLOR CARDS ── */
-.color-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 56px; }
+.color-cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-bottom: 56px; }
+.color-card { flex: 0 0 160px; }
 .color-card { border-radius: var(--radius); padding: 28px 20px; text-align: center; transition: all var(--transition); cursor: default; position: relative; overflow: hidden; }
 .color-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
 .color-card::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.15); opacity: 0; transition: opacity var(--transition); }
@@ -308,7 +309,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .color-card-icon { font-size: 2.2rem; margin-bottom: 12px; }
 .color-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800; color: white; margin-bottom: 4px; }
 .color-card p { color: rgba(255,255,255,0.8); font-size: 0.78rem; font-weight: 500; }
-.cc-yellow { background: linear-gradient(135deg, #f57f17, #f9a825); }
+.cc-yellow { background: linear-gradient(135deg, #f9c800, #fdd835); }
 .cc-blue   { background: linear-gradient(135deg, #1565C0, #1976D2); }
 .cc-white  { background: linear-gradient(135deg, #546e7a, #78909c); }
 .cc-gray   { background: linear-gradient(135deg, #424242, #616161); }
