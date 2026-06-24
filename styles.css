@@ -139,6 +139,42 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .section-header.center { text-align: center; }
 .section-header.center .section-desc { margin: 0 auto; }
 
+/* ── HERO VIDEO BACKGROUND ── */
+.hero-video-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+.hero-video-bg iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* mantém proporção 16:9 cobrindo o container */
+  width: 177.78vh;
+  height: 56.25vw;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  border: none;
+}
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    145deg,
+    rgba(5, 20, 10, 0.82) 0%,
+    rgba(10, 46, 26, 0.70) 50%,
+    rgba(6, 32, 64, 0.80) 100%
+  );
+  z-index: 1;
+}
+/* garante que orbs e conteúdo fiquem acima do overlay */
+.hero-orb     { z-index: 2; }
+.hero-content { z-index: 3; }
+.scroll-hint  { z-index: 3; }
+
 /* ── VIDEO SECTION ── */
 .video-section {
   background: linear-gradient(160deg, var(--green-900) 0%, #0a1f3a 100%);
