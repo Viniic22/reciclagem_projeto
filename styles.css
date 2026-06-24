@@ -122,10 +122,10 @@ html, body, * {
 .hero-visual { display: flex; justify-content: center; align-items: center; }
 .hero-card-stack { position: relative; width: 360px; height: 520px; }
 .hero-card { position: absolute; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; backdrop-filter: blur(12px); padding: 24px; transition: all var(--transition); }
-.hero-card-main { width: 310px; height: 320px; top: 0; left: 0; }
+.hero-card-main { width: 310px; height: 320px; top: 0; left: 0; overflow: hidden; }
 .hero-card-float { width: 190px; top: 348px; right: 0; background: rgba(0,232,124,0.1); border-color: rgba(0,232,124,0.3); animation: cardFloat 4s ease-in-out infinite; box-shadow: 0 8px 32px rgba(0,232,124,0.15); }
 @keyframes cardFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-.hero-recycle-icon { font-size: 4rem; text-align: center; margin: 16px 0; animation: spin 8s linear infinite; }
+.hero-recycle-icon { font-size: 2.8rem; text-align: center; margin: 8px 0; animation: spin 8s linear infinite; }
 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 .hero-card h3 { color: white; font-family: 'Syne', sans-serif; font-size: 1.1rem; margin-bottom: 8px; }
 .hero-card p { color: rgba(255,255,255,0.55); font-size: 0.82rem; }
