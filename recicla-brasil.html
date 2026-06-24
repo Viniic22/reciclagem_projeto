@@ -35,6 +35,7 @@
       <a href="#" data-page="separacao" onclick="showPage('separacao',this);return false;">Separação</a>
       <a href="#" data-page="brasil" onclick="showPage('brasil',this);return false;">No Brasil</a>
       <a href="#" data-page="tecnologia" onclick="showPage('tecnologia',this);return false;">Tecnologia</a>
+      <a href="#" data-page="impacto" onclick="showPage('impacto',this);return false;">Impacto</a>
       <a href="#" data-page="contato" onclick="showPage('contato',this);return false;">Contato</a>
     </div>
     <div class="nav-actions">
@@ -58,6 +59,7 @@
   <a href="#" onclick="showPage('separacao',null,true);return false;"><i class="fas fa-recycle" style="margin-right:8px;color:var(--accent)"></i>Separação de Lixo</a>
   <a href="#" onclick="showPage('brasil',null,true);return false;"><i class="fas fa-leaf" style="margin-right:8px;color:var(--accent)"></i>Reciclagem no Brasil</a>
   <a href="#" onclick="showPage('tecnologia',null,true);return false;"><i class="fas fa-microchip" style="margin-right:8px;color:var(--accent)"></i>Tecnologia</a>
+  <a href="#" onclick="showPage('impacto',null,true);return false;"><i class="fas fa-chart-pie" style="margin-right:8px;color:var(--accent)"></i>Impacto</a>
   <a href="#" onclick="showPage('contato',null,true);return false;"><i class="fas fa-envelope" style="margin-right:8px;color:var(--accent)"></i>Contato</a>
 </div>
 
@@ -549,6 +551,166 @@
   </section>
 </div>
 
+<!-- ==================== PÁGINA: IMPACTO ==================== -->
+<div class="page-section" id="page-impacto">
+
+  <!-- CALCULADORA -->
+  <section class="section" style="padding-top:100px">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-eyebrow">Calculadora</div>
+        <h2 class="section-title">Calcule seu <span>Impacto</span></h2>
+        <p class="section-desc">Informe quantos kg você recicla por mês e descubra em tempo real quanto CO₂, energia e água você está economizando.</p>
+      </div>
+      <div class="calc-wrap">
+        <div class="calc-inputs reveal rd1">
+          <p class="calc-title"><i class="fas fa-sliders-h" style="color:var(--green-500)"></i> Quanto você recicla por mês?</p>
+          <div class="calc-slider-item">
+            <div class="calc-slider-header">
+              <span class="calc-mat-icon">📄</span>
+              <span class="calc-mat-name">Papel &amp; Papelão</span>
+              <span class="calc-mat-val" id="val-papel">0 kg</span>
+            </div>
+            <input type="range" class="calc-range" id="range-papel" min="0" max="50" value="0" oninput="calcImpact()">
+          </div>
+          <div class="calc-slider-item">
+            <div class="calc-slider-header">
+              <span class="calc-mat-icon">🧴</span>
+              <span class="calc-mat-name">Plástico</span>
+              <span class="calc-mat-val" id="val-plastico">0 kg</span>
+            </div>
+            <input type="range" class="calc-range" id="range-plastico" min="0" max="30" value="0" oninput="calcImpact()">
+          </div>
+          <div class="calc-slider-item">
+            <div class="calc-slider-header">
+              <span class="calc-mat-icon">🥫</span>
+              <span class="calc-mat-name">Alumínio &amp; Metais</span>
+              <span class="calc-mat-val" id="val-aluminio">0 kg</span>
+            </div>
+            <input type="range" class="calc-range" id="range-aluminio" min="0" max="20" value="0" oninput="calcImpact()">
+          </div>
+          <div class="calc-slider-item">
+            <div class="calc-slider-header">
+              <span class="calc-mat-icon">🍾</span>
+              <span class="calc-mat-name">Vidro</span>
+              <span class="calc-mat-val" id="val-vidro">0 kg</span>
+            </div>
+            <input type="range" class="calc-range" id="range-vidro" min="0" max="30" value="0" oninput="calcImpact()">
+          </div>
+        </div>
+        <div class="calc-results reveal rd2">
+          <div class="calc-result-card">
+            <div class="calc-result-icon">🌍</div>
+            <div class="calc-result-num" id="res-co2">0</div>
+            <div class="calc-result-unit">kg de CO₂</div>
+            <div class="calc-result-label">economizados</div>
+          </div>
+          <div class="calc-result-card">
+            <div class="calc-result-icon">🌳</div>
+            <div class="calc-result-num" id="res-trees">0</div>
+            <div class="calc-result-unit">árvores</div>
+            <div class="calc-result-label">equivalente salvas</div>
+          </div>
+          <div class="calc-result-card">
+            <div class="calc-result-icon">⚡</div>
+            <div class="calc-result-num" id="res-energy">0</div>
+            <div class="calc-result-unit">kWh de energia</div>
+            <div class="calc-result-label">economizados</div>
+          </div>
+          <div class="calc-result-card">
+            <div class="calc-result-icon">💧</div>
+            <div class="calc-result-num" id="res-water">0</div>
+            <div class="calc-result-unit">litros de água</div>
+            <div class="calc-result-label">economizados</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FATOS IMPACTANTES -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-eyebrow">Números Chocantes</div>
+        <h2 class="section-title">Fatos que <span>Impressionam</span></h2>
+      </div>
+      <div class="impact-facts-grid">
+        <div class="impact-fact-card reveal rd1">
+          <div class="impact-fact-num">400</div>
+          <div class="impact-fact-text">anos para uma garrafa plástica se decompor na natureza</div>
+        </div>
+        <div class="impact-fact-card reveal rd2">
+          <div class="impact-fact-num">95%</div>
+          <div class="impact-fact-text">menos energia para produzir alumínio reciclado vs. virgem</div>
+        </div>
+        <div class="impact-fact-card reveal rd3">
+          <div class="impact-fact-num">∞</div>
+          <div class="impact-fact-text">vezes que o vidro pode ser reciclado sem perder qualidade</div>
+        </div>
+        <div class="impact-fact-card reveal rd4">
+          <div class="impact-fact-num">2,5M</div>
+          <div class="impact-fact-text">toneladas de plástico chegam aos oceanos todo ano no mundo</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LINHA DO TEMPO -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-eyebrow">História</div>
+        <h2 class="section-title">Linha do Tempo da <span>Reciclagem</span> no Brasil</h2>
+      </div>
+      <div class="impact-timeline">
+        <div class="itl-item reveal rd1">
+          <div class="itl-year">1989</div>
+          <div class="itl-content">
+            <h4>Curitiba Pioneira</h4>
+            <p>Curitiba lança o primeiro programa de coleta seletiva do Brasil, tornando-se referência mundial em gestão urbana de resíduos.</p>
+          </div>
+        </div>
+        <div class="itl-item reveal rd2">
+          <div class="itl-year">1992</div>
+          <div class="itl-content">
+            <h4>Rio-92 &amp; Agenda 21</h4>
+            <p>A Conferência das Nações Unidas no Rio de Janeiro coloca o Brasil no centro do debate ambiental global e impulsiona políticas de reciclagem.</p>
+          </div>
+        </div>
+        <div class="itl-item reveal rd3">
+          <div class="itl-year">2003</div>
+          <div class="itl-content">
+            <h4>Criação do CEMPRE</h4>
+            <p>O Compromisso Empresarial para Reciclagem (CEMPRE) passa a monitorar e divulgar dados anuais sobre reciclagem no Brasil, essenciais para políticas públicas.</p>
+          </div>
+        </div>
+        <div class="itl-item reveal rd4">
+          <div class="itl-year">2010</div>
+          <div class="itl-content">
+            <h4>Política Nacional de Resíduos Sólidos</h4>
+            <p>A Lei 12.305/2010 institui a PNRS, obrigando municípios a eliminar lixões e criar planos de gerenciamento de resíduos com metas de reciclagem.</p>
+          </div>
+        </div>
+        <div class="itl-item reveal rd5">
+          <div class="itl-year">2015</div>
+          <div class="itl-content">
+            <h4>ODS da ONU</h4>
+            <p>O Brasil assina os Objetivos de Desenvolvimento Sustentável, comprometendo-se com consumo responsável e gestão eficiente de resíduos até 2030.</p>
+          </div>
+        </div>
+        <div class="itl-item reveal rd6">
+          <div class="itl-year">2021</div>
+          <div class="itl-content">
+            <h4>Lei do Lixo Eletrônico</h4>
+            <p>O Brasil regulamenta o descarte de resíduos eletroeletrônicos, responsabilizando fabricantes pela logística reversa de celulares, computadores e TVs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
 <!-- ==================== PÁGINA: CONTATO ==================== -->
 <div class="page-section" id="page-contato">
   <section class="section" style="padding-top:100px">
@@ -740,6 +902,25 @@ function toggleTheme() {
   html.setAttribute('data-theme', next);
   localStorage.setItem('rb-theme', next);
   document.getElementById('theme-icon').className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+}
+
+function calcImpact() {
+  const papel    = +document.getElementById('range-papel').value;
+  const plastico = +document.getElementById('range-plastico').value;
+  const aluminio = +document.getElementById('range-aluminio').value;
+  const vidro    = +document.getElementById('range-vidro').value;
+  document.getElementById('val-papel').textContent    = papel + ' kg';
+  document.getElementById('val-plastico').textContent = plastico + ' kg';
+  document.getElementById('val-aluminio').textContent = aluminio + ' kg';
+  document.getElementById('val-vidro').textContent    = vidro + ' kg';
+  const co2    = +(papel*1.1 + plastico*1.5 + aluminio*9.0 + vidro*0.3).toFixed(1);
+  const trees  = +(co2 / 1.8).toFixed(1);
+  const energy = +(papel*4.7 + plastico*11.7 + aluminio*47.2 + vidro*0.7).toFixed(0);
+  const water  = +(papel*26  + plastico*185  + aluminio*37   + vidro*2).toFixed(0);
+  document.getElementById('res-co2').textContent    = co2;
+  document.getElementById('res-trees').textContent  = trees;
+  document.getElementById('res-energy').textContent = energy;
+  document.getElementById('res-water').textContent  = water;
 }
 
 function toggleGrayscale() {
