@@ -1346,42 +1346,16 @@ function generateCertificate(title, pct, sc, total) {
   modal.className = 'cert-modal-overlay';
   modal.innerHTML = `
     <div class="cert-box" id="cert-printable">
-      <div class="cert-top-bar"></div>
-      <div class="cert-inner">
-        <div class="cert-watermark">♻</div>
-        <div class="cert-header">
-          <div class="cert-logo-wrap"><span class="cert-logo-icon">♻</span><span class="cert-logo-text">Eco<span>VR</span></span></div>
-          <div class="cert-divider-h"></div>
-          <div class="cert-type">CERTIFICADO DE CONHECIMENTO AMBIENTAL</div>
+      <img src="certificado-bg.png" class="cert-bg-img" alt="certificado"/>
+      <div class="cert-overlay">
+        <div class="cert-ov-logo">
+          <span class="cert-ov-icon">♻</span>
+          <span class="cert-ov-brand">Eco<span>VR</span></span>
         </div>
-        <div class="cert-body">
-          <p class="cert-confirms">Certificamos que</p>
-          <div class="cert-name">${name}</div>
-          <p class="cert-achieved">concluiu com êxito o <strong>Quiz de Reciclagem</strong> do portal educacional EcoVR,<br>demonstrando conhecimento sobre sustentabilidade e meio ambiente.</p>
-          <div class="cert-score-wrap">
-            <div class="cert-score-circle">
-              <span class="cert-score">${pct}%</span>
-              <span class="cert-score-sub">${sc}/${total} acertos</span>
-            </div>
-          </div>
-          <div class="cert-badge-wrap"><div class="cert-title-badge">${title}</div></div>
-        </div>
-        <div class="cert-footer">
-          <div class="cert-footer-col">
-            <div class="cert-sig-line"></div>
-            <span class="cert-sig-name">Vinicius Correa</span>
-            <span class="cert-footer-sub">Desenvolvedor — EcoVR</span>
-          </div>
-          <div class="cert-seal-wrap"><div class="cert-seal">♻</div><span>EcoVR</span></div>
-          <div class="cert-footer-col">
-            <div class="cert-sig-line"></div>
-            <span class="cert-sig-name">Rafael Leismann</span>
-            <span class="cert-footer-sub">Pesquisador — EcoVR</span>
-          </div>
-        </div>
-        <div class="cert-school">SENAI Caçador – SC · ${today}</div>
+        <div class="cert-ov-name">${name}</div>
+        <div class="cert-ov-score">${pct}% · ${sc}/${total} acertos · <em>${title}</em></div>
+        <div class="cert-ov-date">${today}</div>
       </div>
-      <div class="cert-bottom-bar"></div>
     </div>
     <div class="cert-actions">
       <button class="btn-primary" onclick="window.print()"><i class="fas fa-print"></i> Imprimir / Salvar PDF</button>
