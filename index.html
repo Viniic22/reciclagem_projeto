@@ -1344,17 +1344,76 @@ function generateCertificate(title, pct, sc, total) {
   const modal = document.createElement('div');
   modal.id = 'cert-modal';
   modal.className = 'cert-modal-overlay';
+  const bars = [4,6,8,11,14].map(function(h,i){
+    return '<div class="ci-bar" style="height:'+h+'px;opacity:'+(i < Math.round(pct/20) ? 1 : 0.28)+'"></div>';
+  }).join('');
+
   modal.innerHTML = `
     <div class="cert-box" id="cert-printable">
-      <img src="certificado-bg.png" class="cert-bg-img" alt="certificado"/>
-      <div class="cert-overlay">
-        <div class="cert-ov-name">${name}</div>
-        <div class="cert-ov-title-area">
-          <div class="cert-ov-achievement">${title}</div>
-          <div class="cert-ov-score">${pct}% &nbsp;·&nbsp; ${sc}/${total} questões</div>
+
+      <!-- Folhas no frame verde -->
+      <div class="ci-leaf ci-leaf-tl">🍃🌿</div>
+      <div class="ci-leaf ci-leaf-tr">🌿🍃</div>
+      <div class="ci-leaf ci-leaf-bl">🌿🍃</div>
+      <div class="ci-leaf ci-leaf-br">🍃🌿</div>
+
+      <!-- Área branca interna -->
+      <div class="ci-white">
+
+        <!-- Folhas internas nos cantos -->
+        <div class="ci-corner-leaf ci-cl-tl">🍃</div>
+        <div class="ci-corner-leaf ci-cl-tr">🍃</div>
+        <div class="ci-corner-leaf ci-cl-bl">🍃</div>
+        <div class="ci-corner-leaf ci-cl-br">🍃</div>
+
+        <!-- Cabeçalho -->
+        <div class="ci-header">
+          <span class="ci-sust">✔ SUSTENTABILIDADE EM AÇÃO</span>
+          <div class="ci-logo"><span class="ci-recycle">♻</span> Eco<span class="ci-vr">VR</span></div>
+          <span class="ci-big-recycle">♻</span>
         </div>
-        <div class="cert-ov-date">${today}</div>
-      </div>
+
+        <!-- Título -->
+        <h1 class="ci-title">CERTIFICADO</h1>
+        <div class="ci-title-bar"></div>
+
+        <!-- Texto declaratório -->
+        <p class="ci-venho">VENHO POR MEIO DESTE, DECLARAR QUE O(A) ALUNO(A)</p>
+
+        <!-- Nome -->
+        <div class="ci-name-wrap"><div class="ci-name">${name}</div></div>
+
+        <!-- Participou -->
+        <p class="ci-participou">PARTICIPOU DAS ATIVIDADES REFERENTES AO MEIO AMBIENTE,<br>SE TORNANDO AGORA UM(A)</p>
+
+        <!-- Título de conquista -->
+        <div class="ci-achievement">${title} 🌿</div>
+
+        <!-- Ícones -->
+        <div class="ci-icons">
+          <div class="ci-ico"><div class="ci-ico-circle">♻</div><small>Reduza</small></div>
+          <div class="ci-ico"><div class="ci-ico-circle">🌿</div><small>Reutilize</small></div>
+          <div class="ci-ico"><div class="ci-ico-circle">♻</div><small>Recicle</small></div>
+          <div class="ci-ico"><div class="ci-ico-circle">🌍</div><small>Preserve</small></div>
+          <div class="ci-ico"><div class="ci-ico-circle">🌱</div><small>Transforme</small></div>
+        </div>
+
+        <!-- Rodapé: data + caixa IMPACTO -->
+        <div class="ci-footer">
+          <div class="ci-date-col">
+            <div class="ci-date-line"></div>
+            <div class="ci-date-val">${today}</div>
+            <div class="ci-data-label">DATA</div>
+          </div>
+          <div class="ci-impacto">
+            <div class="ci-impacto-plant">🌱</div>
+            <div class="ci-impacto-title">IMPACTO<br>POSITIVO</div>
+            <div class="ci-impacto-sub">${pct}% de acertos<br>${sc}/${total} questões</div>
+            <div class="ci-bars">${bars}</div>
+          </div>
+        </div>
+
+      </div><!-- /ci-white -->
     </div>
     <div class="cert-actions">
       <button class="btn-primary" onclick="window.print()"><i class="fas fa-print"></i> Imprimir / Salvar PDF</button>

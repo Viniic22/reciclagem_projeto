@@ -438,71 +438,91 @@ html, body, * {
 .cert-name-input:focus { border-color: var(--green-500); }
 .cert-name-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 4px; }
 
-/* ── CERTIFICADO ── */
-.cert-box { position: relative; width: 100%; max-width: 720px; border-radius: 6px; overflow: hidden; box-shadow: 0 32px 80px rgba(0,0,0,0.6); }
-.cert-bg-img { display: block; width: 100%; height: auto; }
-.cert-overlay { position: absolute; inset: 0; pointer-events: none; }
+/* ══════════════════════════════
+   CERTIFICADO — CSS puro
+══════════════════════════════ */
 
-/* Nome: centralizado vertical e horizontalmente na linha em branco (~44% do topo) */
-.cert-ov-name {
-  position: absolute;
-  top: 44%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: clamp(1rem, 2.6vw, 1.7rem);
-  color: #12391e;
-  white-space: nowrap;
-  letter-spacing: -0.01em;
+/* Frame externo verde escuro */
+.cert-box {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  background: linear-gradient(145deg, #072a14 0%, #0f4a22 45%, #072a14 100%);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.65);
+  overflow: hidden;
 }
 
-/* Área do título: cobre exatamente "PROTETOR(A) DO MEIO AMBIENTE!" (60–77%) */
-.cert-ov-title-area {
-  position: absolute;
-  top: 60%;
-  left: 2%;
-  right: 26%;
-  height: 17%;
-  background: rgb(241, 251, 243);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-.cert-ov-achievement {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: clamp(0.9rem, 2.6vw, 1.5rem);
-  color: #145e30;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  line-height: 1.2;
-}
-.cert-ov-score {
-  background: #145e30;
-  color: #fff;
-  font-weight: 700;
-  font-size: clamp(0.52rem, 1.3vw, 0.75rem);
-  padding: 4px 16px;
-  border-radius: 100px;
-  white-space: nowrap;
+/* Folhas grandes no frame verde */
+.ci-leaf { position: absolute; font-size: 3.2rem; pointer-events: none; line-height: 1; z-index: 0; }
+.ci-leaf-tl { top: -4px; left: -4px; transform: rotate(-25deg); opacity: 0.55; }
+.ci-leaf-tr { top: -4px; right: -4px; transform: rotate(25deg) scaleX(-1); opacity: 0.55; }
+.ci-leaf-bl { bottom: -4px; left: -4px; transform: rotate(25deg) scaleY(-1); opacity: 0.5; }
+.ci-leaf-br { bottom: -4px; right: -4px; transform: rotate(-25deg) scale(-1); opacity: 0.5; }
+
+/* Área branca interna */
+.ci-white {
+  background: #ffffff;
+  border-radius: 4px;
+  padding: 16px 32px 18px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
 }
 
-/* Data: centralizada na linha DATA (bottom ~9%, left ~41%) */
-.cert-ov-date {
-  position: absolute;
-  bottom: 9%;
-  left: 41%;
-  transform: translate(-50%, 50%);
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: clamp(0.62rem, 1.5vw, 0.88rem);
-  color: #12391e;
-  white-space: nowrap;
-}
+/* Folhas pequenas nos cantos da área branca */
+.ci-corner-leaf { position: absolute; font-size: 1.6rem; pointer-events: none; opacity: 0.14; }
+.ci-cl-tl { top: 4px; left: 6px; transform: rotate(-30deg); }
+.ci-cl-tr { top: 4px; right: 6px; transform: rotate(30deg) scaleX(-1); }
+.ci-cl-bl { bottom: 4px; left: 6px; transform: rotate(30deg) scaleY(-1); }
+.ci-cl-br { bottom: 4px; right: 6px; transform: rotate(-30deg) scale(-1); }
+
+/* Cabeçalho */
+.ci-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2px; }
+.ci-sust { background: #e4f5eb; color: #145e30; font-size: 0.52rem; font-weight: 700; padding: 3px 9px; border-radius: 100px; letter-spacing: 0.06em; }
+.ci-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; color: #0d3d1e; display: flex; align-items: center; gap: 5px; }
+.ci-recycle { font-size: 1rem; }
+.ci-vr { color: #00a855; }
+.ci-big-recycle { font-size: 2rem; opacity: 0.85; }
+
+/* Título CERTIFICADO */
+.ci-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem, 5vw, 2.9rem); color: #0a2e14; text-align: center; letter-spacing: 0.09em; margin: 6px 0 3px; line-height: 1; }
+.ci-title-bar { height: 2px; background: linear-gradient(90deg, transparent, #1a6e3c 30%, #1a6e3c 70%, transparent); margin: 4px auto 8px; width: 85%; }
+
+/* Texto declaratório */
+.ci-venho { text-align: center; font-size: 0.62rem; font-weight: 600; color: #4a6a56; letter-spacing: 0.05em; margin-bottom: 6px; }
+
+/* Nome */
+.ci-name-wrap { text-align: center; margin-bottom: 8px; }
+.ci-name { display: inline-block; font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.3rem, 3.5vw, 1.9rem); color: #0a2e14; border-bottom: 2px solid #1a6e3c; padding-bottom: 4px; min-width: 180px; }
+
+/* Participou */
+.ci-participou { text-align: center; font-size: 0.62rem; font-weight: 600; color: #4a6a56; letter-spacing: 0.04em; line-height: 1.65; margin-bottom: 8px; }
+
+/* Título de conquista */
+.ci-achievement { text-align: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.1rem, 3.2vw, 1.85rem); color: #145e30; text-transform: uppercase; line-height: 1.2; margin-bottom: 12px; }
+
+/* Ícones */
+.ci-icons { display: flex; justify-content: center; gap: clamp(8px, 2vw, 18px); margin-bottom: 12px; }
+.ci-ico { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.ci-ico-circle { width: 38px; height: 38px; background: #eaf7ef; border: 2px solid #a4d9b6; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+.ci-ico small { font-size: 0.52rem; color: #4a6a56; font-weight: 700; }
+
+/* Rodapé */
+.ci-footer { display: flex; align-items: flex-end; justify-content: space-between; border-top: 1px solid #cce8d5; padding-top: 10px; gap: 10px; }
+.ci-date-col { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.ci-date-line { width: 130px; height: 1px; background: #6b7280; margin-bottom: 4px; }
+.ci-date-val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.75rem; color: #0a2e14; }
+.ci-data-label { font-size: 0.56rem; color: #6b7280; font-weight: 700; letter-spacing: 0.1em; }
+
+/* Caixa IMPACTO POSITIVO */
+.ci-impacto { background: linear-gradient(145deg, #0a3318, #155c28); color: #fff; border-radius: 8px; padding: 10px 14px 8px; display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 108px; }
+.ci-impacto-plant { font-size: 1.4rem; }
+.ci-impacto-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.62rem; text-align: center; line-height: 1.3; letter-spacing: 0.06em; }
+.ci-impacto-sub { font-size: 0.52rem; color: rgba(255,255,255,0.8); text-align: center; line-height: 1.45; }
+.ci-bars { display: flex; align-items: flex-end; gap: 3px; margin-top: 5px; }
+.ci-bar { width: 9px; background: #5fd88a; border-radius: 2px 2px 0 0; }
 
 .cert-actions { display: flex; gap: 12px; }
 
@@ -510,8 +530,7 @@ html, body, * {
   body > *:not(#cert-modal) { display: none !important; }
   .cert-modal-overlay { position: static; background: none; padding: 0; }
   .cert-actions { display: none !important; }
-  .cert-box { box-shadow: none; max-width: 100%; }
-  .cert-bg-img, .cert-ov-name, .cert-ov-title-area, .cert-ov-date { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .cert-box { box-shadow: none; max-width: 100%; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
 
 /* ── PROCESS STEPS ── */
