@@ -142,6 +142,32 @@
     </div>
   </section>
 
+  <!-- CONTADOR EM TEMPO REAL -->
+  <section class="live-counter-section">
+    <div class="container">
+      <div class="live-counter-wrap">
+        <div class="live-dot-wrap"><span class="live-dot"></span><span class="live-label">AO VIVO</span></div>
+        <p class="live-title">Hoje o Brasil gerou</p>
+        <div class="live-number-wrap">
+          <span id="live-tons" class="live-number">0</span>
+          <span class="live-unit">toneladas de lixo</span>
+        </div>
+        <div class="live-sub-wrap">
+          <div class="live-sub-item">
+            <span id="live-recycled" class="live-sub-num">0</span>
+            <span class="live-sub-label">toneladas recicladas (4%)</span>
+          </div>
+          <div class="live-divider"></div>
+          <div class="live-sub-item">
+            <span id="live-wasted" class="live-sub-num">0</span>
+            <span class="live-sub-label">toneladas descartadas</span>
+          </div>
+        </div>
+        <p class="live-source">Baseado em dados ABRELPE — 81 milhões ton/ano</p>
+      </div>
+    </div>
+  </section>
+
   <!-- O QUE É RECICLAGEM -->
   <section class="section">
     <div class="container">
@@ -1100,6 +1126,33 @@ function toggleMenu() {
   const open = m.classList.toggle('open');
   h.setAttribute('aria-expanded', String(open));
 }
+
+// ── CONTADOR AO VIVO ──────────────────────────────────────────────────
+(function startLiveCounter() {
+  const TONS_PER_YEAR = 81_000_000;
+  const TONS_PER_SEC  = TONS_PER_YEAR / (365 * 86400);
+
+  function tonsSinceMidnight() {
+    const now = new Date();
+    const secsSinceMidnight = (now.getHours() * 3600) + (now.getMinutes() * 60) + now.getSeconds() + (now.getMilliseconds() / 1000);
+    return secsSinceMidnight * TONS_PER_SEC;
+  }
+
+  function fmt(n) { return Math.floor(n).toLocaleString('pt-BR'); }
+
+  function tick() {
+    const tons = tonsSinceMidnight();
+    const elT = document.getElementById('live-tons');
+    const elR = document.getElementById('live-recycled');
+    const elW = document.getElementById('live-wasted');
+    if (elT) elT.textContent = fmt(tons);
+    if (elR) elR.textContent = fmt(tons * 0.04);
+    if (elW) elW.textContent = fmt(tons * 0.96);
+  }
+
+  tick();
+  setInterval(tick, 1000);
+})();
 
 // ── CONTADORES ────────────────────────────────────────────────────────
 let countersRan = false;

@@ -109,6 +109,24 @@ html, body, * {
 @keyframes pageIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes pageOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-8px); } }
 
+/* ── LIVE COUNTER ── */
+.live-counter-section { background: linear-gradient(135deg, #061a0e 0%, #0a2215 50%, #061a0e 100%); border-top: 1px solid rgba(0,232,124,0.15); border-bottom: 1px solid rgba(0,232,124,0.15); padding: 56px 0; }
+.live-counter-wrap { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px; }
+.live-dot-wrap { display: flex; align-items: center; gap: 8px; }
+.live-dot { width: 8px; height: 8px; border-radius: 50%; background: #ef4444; box-shadow: 0 0 0 0 rgba(239,68,68,0.4); animation: livePulse 1.5s infinite; }
+.live-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; color: #ef4444; text-transform: uppercase; }
+@keyframes livePulse { 0% { box-shadow: 0 0 0 0 rgba(239,68,68,0.5); } 70% { box-shadow: 0 0 0 10px rgba(239,68,68,0); } 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); } }
+.live-title { font-size: 1rem; color: rgba(255,255,255,0.55); font-weight: 500; margin: 0; }
+.live-number-wrap { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.live-number { font-family: 'Syne', sans-serif; font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 800; color: #00e87c; letter-spacing: -0.03em; line-height: 1; text-shadow: 0 0 40px rgba(0,232,124,0.4); }
+.live-unit { font-size: 1.1rem; color: rgba(255,255,255,0.6); font-weight: 500; }
+.live-sub-wrap { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+.live-sub-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.live-sub-num { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: white; }
+.live-sub-label { font-size: 0.75rem; color: rgba(255,255,255,0.45); }
+.live-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.15); }
+.live-source { font-size: 0.7rem; color: rgba(255,255,255,0.25); margin: 0; }
+
 /* ── REGION CHART ── */
 .region-chart { display: flex; flex-direction: column; gap: 14px; }
 .region-bar-item { display: grid; grid-template-columns: 110px 1fr 52px; align-items: center; gap: 12px; }
