@@ -1312,7 +1312,9 @@ function openCertificate(title, pct, sc, total) {
 
 function generateCertificate(title, pct, sc, total) {
   const nameEl = document.getElementById('cert-name-input');
-  const name = nameEl ? nameEl.value.trim() || 'Participante' : 'Participante';
+  const rawName = nameEl ? nameEl.value.trim() || 'Participante' : 'Participante';
+  const name = rawName.replace(/\b\w/g, function(c){ return c.toUpperCase(); });
+  const cleanTitle = title.replace(/[\u{1F000}-\u{1FFFF}]|[☀-➿]|️/gu, '').trim();
   const nameModal = document.getElementById('cert-name-modal');
   if (nameModal) nameModal.remove();
 
@@ -1356,7 +1358,7 @@ function generateCertificate(title, pct, sc, total) {
         <p class="ci-venho">VENHO POR MEIO DESTE, DECLARAR QUE O(A) ALUNO(A)</p>
         <div class="ci-name-wrap"><div class="ci-name">${name}</div></div>
         <p class="ci-participou">PARTICIPOU DAS ATIVIDADES REFERENTES AO MEIO AMBIENTE,<br>SE TORNANDO AGORA UM(A)</p>
-        <div class="ci-achievement">${title}</div>
+        <div class="ci-achievement">${cleanTitle}</div>
 
         <div class="ci-icons">
           <div class="ci-ico"><div class="ci-ico-c"><i class="fas fa-recycle"></i></div><small>Reduza</small></div>
