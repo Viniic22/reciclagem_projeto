@@ -842,7 +842,7 @@
             <h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:24px;font-size:1.15rem">Enviar Mensagem</h3>
             <div class="form-success" id="form-success" role="alert">
               <i class="fas fa-check-circle" style="font-size:1.5rem;color:var(--green-600);display:block;margin-bottom:8px"></i>
-              Seu cliente de e-mail foi aberto com a mensagem pronta. É só enviar!
+              O Gmail foi aberto em uma nova aba com a mensagem pronta. É só clicar em Enviar!
             </div>
             <div id="contact-form">
               <div class="form-row">
@@ -1659,11 +1659,12 @@ function submitForm() {
     'Assunto: ' + assunto + '\n\n' +
     'Mensagem:\n' + msg.value;
 
-  const mailto = 'mailto:vinicius_correa4@estudante.sesisenai.org.br,rafael_leismann@estudante.sesisenai.org.br'
-    + '?subject=' + encodeURIComponent('[EcoVR] ' + assunto)
+  const gmailUrl = 'https://mail.google.com/mail/?view=cm'
+    + '&to=' + encodeURIComponent('vinicius_correa4@estudante.sesisenai.org.br,rafael_leismann@estudante.sesisenai.org.br')
+    + '&su=' + encodeURIComponent('[EcoVR] ' + assunto)
     + '&body=' + encodeURIComponent(corpo);
 
-  window.location.href = mailto;
+  window.open(gmailUrl, '_blank');
 
   document.getElementById('contact-form').style.display = 'none';
   document.getElementById('form-success').classList.add('show');
