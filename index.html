@@ -1203,6 +1203,36 @@ const quizData = [
     opts: ['Lixo comum', 'Coleta seletiva normal', 'Pontos de coleta especializados', 'Enterradas no jardim'],
     correct: 2,
     exp: 'Pilhas e baterias contêm metais pesados tóxicos e precisam ir a pontos de coleta específicos em lojas, supermercados e postos de saúde.'
+  },
+  {
+    q: 'Qual cor de lixeira representa resíduos orgânicos (restos de comida)?',
+    opts: ['Marrom', 'Verde', 'Cinza', 'Laranja'],
+    correct: 0,
+    exp: 'O marrom é a cor destinada ao lixo orgânico, como cascas de frutas, restos de comida e borra de café.'
+  },
+  {
+    q: 'Quanto tempo uma garrafa plástica PET demora para se decompor na natureza?',
+    opts: ['10 anos', '100 anos', '400 anos', '1000 anos'],
+    correct: 2,
+    exp: 'Uma garrafa PET pode levar até 400 anos para se decompor, liberando microplásticos ao longo desse processo.'
+  },
+  {
+    q: 'O que NÃO deve ser descartado na lixeira de recicláveis?',
+    opts: ['Lata de refrigerante', 'Papel jornal', 'Papel higiênico usado', 'Garrafa de vidro'],
+    correct: 2,
+    exp: 'Papel higiênico usado é considerado rejeito e deve ir ao lixo comum, pois não pode ser reciclado por questões sanitárias.'
+  },
+  {
+    q: 'Qual é o destino correto para óleo de cozinha usado?',
+    opts: ['Ralo da pia', 'Lixo comum', 'Pontos de coleta de óleo', 'Vaso sanitário'],
+    correct: 2,
+    exp: 'Um litro de óleo contamina até 1 milhão de litros de água. O correto é guardar em garrafas PET e levar a pontos de coleta.'
+  },
+  {
+    q: 'Qual porcentagem do lixo produzido no Brasil é efetivamente reciclada?',
+    opts: ['4%', '15%', '30%', '50%'],
+    correct: 0,
+    exp: 'O Brasil recicla apenas cerca de 4% do seu lixo, muito abaixo da média europeia que ultrapassa 40%.'
   }
 ];
 
@@ -1214,11 +1244,11 @@ function quizResult() {
   const filled = (pct / 100) * circ;
   const data = score === quizData.length
     ? { title: 'Guardião do Planeta! 🌍', sub: 'Incrível — você gabaritou! Pessoas como você transformam o mundo.', color: '#00e87c', emoji: '🏆', confete: true }
-    : score >= 4
-    ? { title: 'Eco-Especialista! 🌿', sub: 'Quase perfeito! Você tem o conhecimento para inspirar sua comunidade.', color: '#00e87c', emoji: '🥇', confete: false }
-    : score >= 3
+    : score >= 8
+    ? { title: 'Eco-Especialista! 🌿', sub: 'Quase perfeito! Você tem o conhecimento para inspirar sua comunidade.', color: '#00e87c', emoji: '🥇', confete: true }
+    : score >= 6
     ? { title: 'Reciclador em Ascensão ♻️', sub: 'Bom caminho! Cada atitude correta já faz diferença para o planeta.', color: '#f59e0b', emoji: '🥈', confete: false }
-    : score >= 2
+    : score >= 4
     ? { title: 'Consciência Nascente 🌱', sub: 'Você está começando sua jornada verde — continue explorando o site!', color: '#f59e0b', emoji: '🌱', confete: false }
     : { title: 'Explorador Ambiental 🔍', sub: 'O conhecimento é o primeiro passo. Leia as seções e tente novamente!', color: '#ef4444', emoji: '📖', confete: false };
 
@@ -1635,6 +1665,19 @@ document.addEventListener('DOMContentLoaded', function() {
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 });
+
+// ── VOLTAR AO TOPO ────────────────────────────────────────────────────
+(function() {
+  const btn = document.createElement('button');
+  btn.id = 'back-to-top';
+  btn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+  btn.setAttribute('aria-label', 'Voltar ao topo');
+  btn.onclick = function() { window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  document.body.appendChild(btn);
+  window.addEventListener('scroll', function() {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  });
+})();
 </script>
 </body>
 </html>
