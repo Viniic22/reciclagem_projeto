@@ -1666,18 +1666,6 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 });
 
-// ── VOLTAR AO TOPO ────────────────────────────────────────────────────
-(function() {
-  const btn = document.createElement('button');
-  btn.id = 'back-to-top';
-  btn.innerHTML = '<i class="fas fa-chevron-up"></i>';
-  btn.setAttribute('aria-label', 'Voltar ao topo');
-  btn.onclick = function() { window.scrollTo({ top: 0, behavior: 'smooth' }); };
-  document.body.appendChild(btn);
-  window.addEventListener('scroll', function() {
-    btn.classList.toggle('visible', window.scrollY > 400);
-  });
-})();
 </script>
 </body>
 </html>
