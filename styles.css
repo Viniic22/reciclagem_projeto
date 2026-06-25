@@ -470,7 +470,12 @@ html, body, * {
 .ci-name-wrap { text-align: center; margin-bottom: 9px; }
 .ci-name { display: inline-block; font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.3rem, 3.5vw, 1.9rem); color: #0a2e14; border-bottom: 2.5px solid #1a6e3c; padding-bottom: 5px; min-width: 200px; }
 .ci-participou { text-align: center; font-size: 0.6rem; font-weight: 700; color: #3d6b50; letter-spacing: 0.05em; line-height: 1.65; margin-bottom: 9px; }
-.ci-achievement { text-align: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(0.95rem, 2.4vw, 1.35rem); color: #145e30; text-transform: uppercase; line-height: 1.25; margin-bottom: 14px; letter-spacing: 0.04em; }
+.ci-achieve-wrap { margin-bottom: 14px; }
+.ci-achieve-deco { display: flex; align-items: center; gap: 8px; margin: 3px 24px; }
+.ci-achieve-deco span { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, #1a6e3c 60%); }
+.ci-achieve-deco span:last-child { background: linear-gradient(90deg, #1a6e3c 40%, transparent); }
+.ci-achieve-deco i { color: #1a6e3c; font-size: 0.6rem; opacity: 0.65; }
+.ci-achievement { text-align: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(0.95rem, 2.4vw, 1.35rem); color: #145e30; text-transform: uppercase; line-height: 1.25; margin: 4px 0; letter-spacing: 0.04em; }
 
 /* Ícones */
 .ci-icons { display: flex; justify-content: center; gap: clamp(8px, 2.2vw, 20px); }
