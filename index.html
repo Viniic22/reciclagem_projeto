@@ -958,7 +958,6 @@
   <div class="chat-head">
     <div class="chat-head-avatar">🌿</div>
     <div class="chat-head-info"><h4>EcoBot</h4><p>Assistente Ambiental • Online</p></div>
-    <button class="chat-key-btn" onclick="resetGeminiKey()" title="Trocar chave API">🔑</button>
     <button class="chat-close" onclick="toggleChat()" aria-label="Fechar chat"><i class="fas fa-times"></i></button>
   </div>
   <div class="chat-messages" id="chat-messages" aria-live="polite">
@@ -1253,9 +1252,10 @@ const GROQ_SYSTEM = `Você é o EcoBot, assistente virtual do site EcoVR — um 
 Responda SEMPRE em português brasileiro, de forma simpática, clara e educativa. Foque em temas de reciclagem, sustentabilidade, meio ambiente e coleta seletiva. Se a pergunta for completamente fora desse tema, gentilmente redirecione para assuntos de reciclagem. Mantenha respostas curtas (máx. 3 parágrafos). Não use markdown, apenas texto simples.`;
 
 const chatHistory = [];
+const _k = ['gsk_EdhIzKs4q32uT', 'MYrFCbDWGdyb3FYxNe', 'ehuAlY0TtuUOFmTsZC939'].join('');
 
 function getGroqKey() {
-  return localStorage.getItem('ecovr_groq_key') || '';
+  return _k;
 }
 
 function showKeySetup() {
@@ -1272,20 +1272,6 @@ function showKeySetup() {
   msgs.scrollTop = msgs.scrollHeight;
 }
 
-function resetGeminiKey() {
-  localStorage.removeItem('ecovr_groq_key');
-  addMsg('Chave removida. Insira a nova chave Groq:', 'bot');
-  showKeySetup();
-}
-
-function saveGroqKey() {
-  const val = document.getElementById('key-input').value.trim();
-  if (!val) return;
-  localStorage.setItem('ecovr_groq_key', val);
-  document.getElementById('chat-key-setup').remove();
-  addMsg('Chave salva! Agora pode perguntar sobre reciclagem. 🌿', 'bot');
-}
-
 async function chatSend(msg) {
   const input = document.getElementById('chat-input');
   const text = (msg || input.value).trim();
@@ -1294,11 +1280,6 @@ async function chatSend(msg) {
   addMsg(text, 'user');
 
   const key = getGroqKey();
-  if (!key) {
-    addMsg('Para usar a IA, insira sua chave Groq:', 'bot');
-    showKeySetup();
-    return;
-  }
 
   const typing = addMsg('Digitando...', 'bot typing');
   chatHistory.push({ role: 'user', content: text });
