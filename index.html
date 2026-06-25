@@ -1248,14 +1248,14 @@ function toggleChat() {
   if (open) document.getElementById('chat-input').focus();
 }
 
-const GEMINI_SYSTEM = `Você é o EcoBot, assistente virtual do site EcoVR — um projeto educacional sobre reciclagem no Brasil criado por Vinicius Correa e Rafael Leismann, estudantes do SENAI de Caçador, SC.
+const GROQ_SYSTEM = `Você é o EcoBot, assistente virtual do site EcoVR — um projeto educacional sobre reciclagem no Brasil criado por Vinicius Correa e Rafael Leismann, estudantes do SENAI de Caçador, SC.
 
 Responda SEMPRE em português brasileiro, de forma simpática, clara e educativa. Foque em temas de reciclagem, sustentabilidade, meio ambiente e coleta seletiva. Se a pergunta for completamente fora desse tema, gentilmente redirecione para assuntos de reciclagem. Mantenha respostas curtas (máx. 3 parágrafos). Não use markdown, apenas texto simples.`;
 
 const chatHistory = [];
 
-function getGeminiKey() {
-  return localStorage.getItem('ecovr_gemini_key') || '';
+function getGroqKey() {
+  return localStorage.getItem('ecovr_groq_key') || '';
 }
 
 function showKeySetup() {
@@ -1264,24 +1264,24 @@ function showKeySetup() {
   wrap.className = 'chat-key-setup';
   wrap.id = 'chat-key-setup';
   wrap.innerHTML = `
-    <p>Para ativar a IA, insira sua chave Gemini API:</p>
+    <p>Para ativar a IA, insira sua chave Groq API:</p>
     <input type="password" id="key-input" placeholder="Cole sua API Key aqui..." />
-    <button onclick="saveGeminiKey()">Ativar IA ✓</button>
+    <button onclick="saveGroqKey()">Ativar IA ✓</button>
   `;
   msgs.appendChild(wrap);
   msgs.scrollTop = msgs.scrollHeight;
 }
 
 function resetGeminiKey() {
-  localStorage.removeItem('ecovr_gemini_key');
-  addMsg('Chave removida. Insira a nova chave Gemini:', 'bot');
+  localStorage.removeItem('ecovr_groq_key');
+  addMsg('Chave removida. Insira a nova chave Groq:', 'bot');
   showKeySetup();
 }
 
-function saveGeminiKey() {
+function saveGroqKey() {
   const val = document.getElementById('key-input').value.trim();
   if (!val) return;
-  localStorage.setItem('ecovr_gemini_key', val);
+  localStorage.setItem('ecovr_groq_key', val);
   document.getElementById('chat-key-setup').remove();
   addMsg('Chave salva! Agora pode perguntar sobre reciclagem. 🌿', 'bot');
 }
@@ -1293,50 +1293,50 @@ async function chatSend(msg) {
   input.value = '';
   addMsg(text, 'user');
 
-  const key = getGeminiKey();
+  const key = getGroqKey();
   if (!key) {
-    addMsg('Preciso da sua chave Gemini para responder com IA:', 'bot');
+    addMsg('Para usar a IA, insira sua chave Groq:', 'bot');
     showKeySetup();
     return;
   }
 
   const typing = addMsg('Digitando...', 'bot typing');
-  chatHistory.push({ role: 'user', parts: [{ text }] });
+  chatHistory.push({ role: 'user', content: text });
 
   try {
-    const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=' + key;
-    const body = {
-      system_instruction: { parts: [{ text: GEMINI_SYSTEM }] },
-      contents: chatHistory
-    };
-    const res = await fetch(url, {
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + key
+      },
+      body: JSON.stringify({
+        model: 'llama-3.3-70b-versatile',
+        messages: [{ role: 'system', content: GROQ_SYSTEM }, ...chatHistory],
+        max_tokens: 512
+      })
     });
     const data = await res.json();
     if (data.error) {
       typing.remove();
-      const code = data.error.code;
-      if (code === 400 || code === 403) {
-        localStorage.removeItem('ecovr_gemini_key');
+      const status = res.status;
+      if (status === 401 || status === 403) {
+        localStorage.removeItem('ecovr_groq_key');
         addMsg('Chave inválida. Insira uma chave válida:', 'bot');
         showKeySetup();
-      } else if (code === 429) {
-        localStorage.removeItem('ecovr_gemini_key');
-        addMsg('Cota desta chave esgotada. Insira uma nova chave Gemini:', 'bot');
-        showKeySetup();
+      } else if (status === 429) {
+        addMsg('Limite de requisições atingido. Aguarde um momento e tente novamente.', 'bot');
       } else {
-        addMsg('Erro ' + code + ': ' + data.error.message, 'bot');
+        addMsg('Erro: ' + (data.error.message || 'tente novamente.'), 'bot');
       }
       return;
     }
-    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Não obtive resposta. Tente novamente!';
-    chatHistory.push({ role: 'model', parts: [{ text: reply }] });
+    const reply = data.choices?.[0]?.message?.content || 'Não obtive resposta. Tente novamente!';
+    chatHistory.push({ role: 'assistant', content: reply });
     typing.remove();
     addMsg(reply, 'bot');
   } catch (e) {
-    console.error('Gemini fetch error:', e);
+    console.error('Groq fetch error:', e);
     typing.remove();
     addMsg('Ops! Sem conexão com a IA agora. Tente novamente. 🌿', 'bot');
   }
