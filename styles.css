@@ -671,7 +671,8 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
 .sobre-cards { display: flex; align-items: center; justify-content: center; gap: 0; margin-top: 56px; flex-wrap: wrap; }
 .sobre-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 40px 36px; text-align: center; width: 300px; backdrop-filter: blur(12px); transition: all var(--transition); }
 .sobre-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(0,232,124,0.3); transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,232,124,0.2); }
-.sobre-avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--green-500), var(--blue-500)); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; color: white; margin: 0 auto 20px; box-shadow: 0 8px 32px rgba(0,232,124,0.3); }
+.sobre-avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--green-500), var(--blue-500)); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; color: white; margin: 0 auto 20px; box-shadow: 0 8px 32px rgba(0,232,124,0.3); overflow: hidden; }
+.sobre-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 .sobre-name { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; color: white; margin-bottom: 8px; }
 .sobre-role { display: inline-block; background: rgba(0,232,124,0.12); border: 1px solid rgba(0,232,124,0.25); color: var(--green-300); font-size: 0.75rem; font-weight: 600; padding: 4px 14px; border-radius: 100px; letter-spacing: 0.04em; margin-bottom: 16px; }
 .sobre-desc { color: rgba(255,255,255,0.55); font-size: 0.85rem; line-height: 1.65; margin-bottom: 20px; }
