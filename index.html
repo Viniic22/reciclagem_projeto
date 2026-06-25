@@ -958,6 +958,7 @@
   <div class="chat-head">
     <div class="chat-head-avatar">🌿</div>
     <div class="chat-head-info"><h4>EcoBot</h4><p>Assistente Ambiental • Online</p></div>
+    <button class="chat-key-btn" onclick="resetGeminiKey()" title="Trocar chave API">🔑</button>
     <button class="chat-close" onclick="toggleChat()" aria-label="Fechar chat"><i class="fas fa-times"></i></button>
   </div>
   <div class="chat-messages" id="chat-messages" aria-live="polite">
@@ -1271,6 +1272,12 @@ function showKeySetup() {
   msgs.scrollTop = msgs.scrollHeight;
 }
 
+function resetGeminiKey() {
+  localStorage.removeItem('ecovr_gemini_key');
+  addMsg('Chave removida. Insira a nova chave Gemini:', 'bot');
+  showKeySetup();
+}
+
 function saveGeminiKey() {
   const val = document.getElementById('key-input').value.trim();
   if (!val) return;
@@ -1310,12 +1317,17 @@ async function chatSend(msg) {
     const data = await res.json();
     if (data.error) {
       typing.remove();
-      if (data.error.code === 400 || data.error.code === 403) {
+      const code = data.error.code;
+      if (code === 400 || code === 403) {
         localStorage.removeItem('ecovr_gemini_key');
         addMsg('Chave inválida. Insira uma chave válida:', 'bot');
         showKeySetup();
+      } else if (code === 429) {
+        localStorage.removeItem('ecovr_gemini_key');
+        addMsg('Cota desta chave esgotada. Insira uma nova chave Gemini:', 'bot');
+        showKeySetup();
       } else {
-        addMsg('Erro: ' + data.error.message, 'bot');
+        addMsg('Erro ' + code + ': ' + data.error.message, 'bot');
       }
       return;
     }

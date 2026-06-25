@@ -477,7 +477,9 @@ html, body, * {
 .chat-head-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: var(--green-900); }
 .chat-head-info h4 { color: white; font-size: 0.9rem; font-weight: 700; }
 .chat-head-info p { color: rgba(255,255,255,0.65); font-size: 0.72rem; }
-.chat-close { margin-left: auto; color: rgba(255,255,255,0.7); width: 28px; height: 28px; border-radius: 7px; display: flex; align-items: center; justify-content: center; transition: all var(--transition); }
+.chat-key-btn { color: rgba(255,255,255,0.5); font-size: 0.85rem; width: 28px; height: 28px; border-radius: 7px; display: flex; align-items: center; justify-content: center; transition: all var(--transition); margin-left: auto; }
+.chat-key-btn:hover { background: rgba(255,255,255,0.12); color: white; }
+.chat-close { color: rgba(255,255,255,0.7); width: 28px; height: 28px; border-radius: 7px; display: flex; align-items: center; justify-content: center; transition: all var(--transition); }
 .chat-close:hover { background: rgba(255,255,255,0.12); color: white; }
 .chat-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
 .chat-msg { max-width: 85%; padding: 10px 14px; border-radius: 14px; font-size: 0.83rem; line-height: 1.5; }
