@@ -49,6 +49,7 @@
 }
 
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+h1,h2,h3,h4,h5 { overflow-wrap: break-word; word-break: break-word; }
 html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
 body { font-family: 'Inter', sans-serif; background: var(--surface); color: var(--text); line-height: 1.6; overflow-x: hidden; transition: background var(--transition), color var(--transition); }
 a { text-decoration: none; color: inherit; }
@@ -816,11 +817,13 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
   .sep-grid, .stats-grid { grid-template-columns: 1fr !important; }
 
   /* Hero mobile */
-  .hero-content { padding: 40px 16px 32px; grid-template-columns: 1fr; }
-  .hero h1 { font-size: clamp(1.7rem, 8vw, 2.4rem); }
-  .hero p { font-size: 0.92rem; }
-  .hero-orb-1 { width: 280px; height: 280px; }
-  .hero-orb-2 { width: 200px; height: 200px; }
+  .hero-content { padding: 40px 16px 32px; grid-template-columns: 1fr; width: 100%; max-width: 100%; }
+  .hero h1 { font-size: clamp(1.6rem, 7.5vw, 2.2rem); word-break: break-word; overflow-wrap: break-word; }
+  .hero p { font-size: 0.9rem; max-width: 100%; }
+  .hero-badge { font-size: 0.68rem; white-space: normal; max-width: 100%; }
+  .hero-stats { width: 100%; }
+  .hero-orb-1 { width: 200px; height: 200px; top: -80px; right: -60px; }
+  .hero-orb-2 { width: 160px; height: 160px; }
 
   /* Live counter mobile */
   .live-number { font-size: clamp(2rem, 10vw, 3rem) !important; }
