@@ -865,15 +865,38 @@
         <h2 class="section-title">Pontos de <span>Coleta</span></h2>
         <p class="section-desc">Encontre o ponto de coleta seletiva mais próximo de você.</p>
       </div>
-      <div class="map-wrapper">
-        <div class="map-label"><i class="fas fa-map-pin"></i> Caçador – SC, Brasil</div>
-        <iframe
-          class="google-map-iframe"
-          src="https://maps.google.com/maps?q=Caçador,SC,Brasil&output=embed&hl=pt-BR&z=13"
-          allowfullscreen
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
+      <div class="coleta-layout">
+        <!-- Card do ponto de coleta -->
+        <div class="coleta-card">
+          <div class="coleta-card-header">
+            <div class="coleta-icon"><i class="fas fa-recycle"></i></div>
+            <div>
+              <div class="coleta-badge">Ponto Oficial</div>
+              <h3 class="coleta-nome">Cooperativa Recicla Caçador</h3>
+            </div>
+          </div>
+          <div class="coleta-info">
+            <div class="coleta-row"><i class="fas fa-map-marker-alt"></i><span>Rua Nelson Eugênio Busato, 1448<br>Bom Sucesso — Caçador, SC</span></div>
+            <div class="coleta-row"><i class="fas fa-box-open"></i><span>Papel, plástico, vidro, metal e orgânicos</span></div>
+            <div class="coleta-row"><i class="fas fa-city"></i><span>Gerenciado pela Prefeitura de Caçador</span></div>
+          </div>
+          <a class="btn-maps" href="https://www.google.com/maps/search/Cooperativa+Recicla+Ca%C3%A7ador+Rua+Nelson+Eug%C3%AAnio+Busato+1448+Ca%C3%A7ador+SC" target="_blank" rel="noopener">
+            <i class="fas fa-map-marked-alt"></i> Abrir no Google Maps
+          </a>
+        </div>
+        <!-- Mapa embed -->
+        <div class="map-wrapper">
+          <iframe
+            class="google-map-iframe"
+            src="https://maps.google.com/maps?q=Rua+Nelson+Eugênio+Busato,1448,Caçador,SC,Brasil&output=embed&hl=pt-BR&z=15"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+          <a class="map-open-btn" href="https://www.google.com/maps/search/Cooperativa+Recicla+Ca%C3%A7ador+Rua+Nelson+Eug%C3%AAnio+Busato+1448+Ca%C3%A7ador+SC" target="_blank" rel="noopener">
+            <i class="fas fa-external-link-alt"></i> Abrir no Maps
+          </a>
+        </div>
       </div>
     </div>
   </section>
