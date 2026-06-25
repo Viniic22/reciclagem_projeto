@@ -1503,9 +1503,13 @@ function toggleChat() {
   if (open) document.getElementById('chat-input').focus();
 }
 
-const GROQ_SYSTEM = `Você é o EcoBot, assistente virtual do site EcoVR — um projeto educacional sobre reciclagem no Brasil criado por Vinicius Correa e Rafael Leismann, estudantes do SENAI de Caçador, SC.
+const GROQ_SYSTEM = `Você é o EcoBot, assistente do EcoVR sobre reciclagem e sustentabilidade no Brasil.
 
-Responda SEMPRE em português brasileiro, de forma simpática, clara e educativa. Foque em temas de reciclagem, sustentabilidade, meio ambiente e coleta seletiva. Se a pergunta for completamente fora desse tema, gentilmente redirecione para assuntos de reciclagem. Mantenha respostas curtas (máx. 3 parágrafos). Não use markdown, apenas texto simples.`;
+Regras obrigatórias:
+- Responda em português, de forma direta e objetiva
+- Máximo 2 frases por resposta — seja conciso
+- Sem listas, sem tópicos, sem markdown, só texto simples
+- Se a pergunta fugir do tema ambiental, responda em 1 frase e redirecione para reciclagem`;
 
 const chatHistory = [];
 const _k = ['gsk_EdhIzKs4q32uT', 'MYrFCbDWGdyb3FYxNe', 'ehuAlY0TtuUOFmTsZC939'].join('');
@@ -1550,7 +1554,7 @@ async function chatSend(msg) {
       body: JSON.stringify({
         model: 'llama-3.3-70b-versatile',
         messages: [{ role: 'system', content: GROQ_SYSTEM }, ...chatHistory],
-        max_tokens: 512
+        max_tokens: 120
       })
     });
     const data = await res.json();
