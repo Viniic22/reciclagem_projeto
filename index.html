@@ -1254,7 +1254,6 @@ function quizResult() {
   const c = document.getElementById('quiz-container');
   c.innerHTML = `
     <div class="quiz-result">
-      <canvas id="quiz-confete" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;display:${data.confete?'block':'none'}"></canvas>
       <div class="qr-emoji">${data.emoji}</div>
       <h3 class="qr-title" style="color:${data.color}">${data.title}</h3>
       <p class="qr-sub">${data.sub}</p>
@@ -1282,21 +1281,23 @@ function quizResult() {
 }
 
 function launchConfete() {
-  const canvas = document.getElementById('quiz-confete');
-  if (!canvas) return;
+  const canvas = document.createElement('canvas');
+  canvas.id = 'confete-global';
+  canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:7000;';
+  document.body.appendChild(canvas);
   const ctx = canvas.getContext('2d');
-  function resize() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight || 400; }
-  resize();
-  const colors = ['#00e87c','#00b4d8','#f59e0b','#ffffff','#a78bfa'];
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const colors = ['#00e87c','#00b4d8','#f59e0b','#ffffff','#a78bfa','#fb923c'];
   function spawn() {
-    return { x: Math.random()*canvas.width, y: -20, r: Math.random()*7+3,
+    return { x: Math.random()*canvas.width, y: -20, r: Math.random()*8+3,
       c: colors[Math.floor(Math.random()*colors.length)],
-      vx: (Math.random()-0.5)*4, vy: Math.random()*5+3, a: Math.random()*360, va: (Math.random()-0.5)*8 };
+      vx: (Math.random()-0.5)*5, vy: Math.random()*5+2, a: Math.random()*360, va: (Math.random()-0.5)*10 };
   }
-  let pieces = Array.from({length: 120}, spawn);
+  let pieces = Array.from({length: 150}, spawn);
   let running = true;
   function draw() {
-    if (!running || !document.getElementById('quiz-confete')) return;
+    if (!running) { canvas.remove(); return; }
     ctx.clearRect(0,0,canvas.width,canvas.height);
     pieces.forEach(function(p, idx) {
       ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.a*Math.PI/180);
@@ -1308,41 +1309,79 @@ function launchConfete() {
     requestAnimationFrame(draw);
   }
   draw();
-  setTimeout(function() { running = false; }, 6000);
+  setTimeout(function() { running = false; }, 5000);
 }
 
 function openCertificate(title, pct, sc, total) {
-  const today = new Date().toLocaleDateString('pt-BR', {day:'2-digit',month:'long',year:'numeric'});
+  const nameModal = document.createElement('div');
+  nameModal.className = 'cert-modal-overlay';
+  nameModal.id = 'cert-name-modal';
+  nameModal.innerHTML = `
+    <div class="cert-name-box">
+      <div class="cert-name-icon">🏆</div>
+      <h3>Qual é o seu nome?</h3>
+      <p>Seu nome aparecerá no certificado</p>
+      <input id="cert-name-input" type="text" class="cert-name-input" placeholder="Digite seu nome completo..." maxlength="60" autofocus/>
+      <div class="cert-name-actions">
+        <button class="btn-primary" onclick="generateCertificate('${title}','${pct}','${sc}','${total}')"><i class="fas fa-certificate"></i> Gerar Certificado</button>
+        <button class="btn-outline" onclick="document.getElementById('cert-name-modal').remove()">Cancelar</button>
+      </div>
+    </div>`;
+  document.body.appendChild(nameModal);
+  setTimeout(function(){ const i = document.getElementById('cert-name-input'); if(i) i.focus(); }, 100);
+  document.getElementById('cert-name-input').addEventListener('keydown', function(e){
+    if (e.key === 'Enter') generateCertificate(title, pct, sc, total);
+  });
+}
+
+function generateCertificate(title, pct, sc, total) {
+  const nameEl = document.getElementById('cert-name-input');
+  const name = nameEl ? nameEl.value.trim() || 'Participante' : 'Participante';
+  const nameModal = document.getElementById('cert-name-modal');
+  if (nameModal) nameModal.remove();
+
+  const today = new Date().toLocaleDateString('pt-BR', {day:'2-digit', month:'long', year:'numeric'});
   const modal = document.createElement('div');
   modal.id = 'cert-modal';
   modal.className = 'cert-modal-overlay';
   modal.innerHTML = `
     <div class="cert-box" id="cert-printable">
-      <div class="cert-header">
-        <div class="cert-logo">♻ EcoVR</div>
-        <div class="cert-type">CERTIFICADO DE CONHECIMENTO AMBIENTAL</div>
-      </div>
-      <div class="cert-body">
-        <p class="cert-confirms">Este certificado confirma que</p>
-        <div class="cert-name-line"></div>
-        <p class="cert-achieved">concluiu o Quiz de Reciclagem do EcoVR com</p>
-        <div class="cert-score">${pct}%</div>
-        <div class="cert-score-label">${sc} de ${total} questões corretas</div>
-        <div class="cert-title-badge">${title}</div>
-      </div>
-      <div class="cert-footer">
-        <div class="cert-footer-col">
-          <div class="cert-footer-line"></div>
-          <span>Vinicius Correa & Rafael Leismann</span>
-          <span class="cert-footer-sub">Criadores — EcoVR / SENAI Caçador-SC</span>
+      <div class="cert-top-bar"></div>
+      <div class="cert-inner">
+        <div class="cert-watermark">♻</div>
+        <div class="cert-header">
+          <div class="cert-logo-wrap"><span class="cert-logo-icon">♻</span><span class="cert-logo-text">Eco<span>VR</span></span></div>
+          <div class="cert-divider-h"></div>
+          <div class="cert-type">CERTIFICADO DE CONHECIMENTO AMBIENTAL</div>
         </div>
-        <div class="cert-seal">♻</div>
-        <div class="cert-footer-col">
-          <div class="cert-footer-line"></div>
-          <span>${today}</span>
-          <span class="cert-footer-sub">Data de Conclusão</span>
+        <div class="cert-body">
+          <p class="cert-confirms">Certificamos que</p>
+          <div class="cert-name">${name}</div>
+          <p class="cert-achieved">concluiu com êxito o <strong>Quiz de Reciclagem</strong> do portal educacional EcoVR,<br>demonstrando conhecimento sobre sustentabilidade e meio ambiente.</p>
+          <div class="cert-score-wrap">
+            <div class="cert-score-circle">
+              <span class="cert-score">${pct}%</span>
+              <span class="cert-score-sub">${sc}/${total} acertos</span>
+            </div>
+          </div>
+          <div class="cert-badge-wrap"><div class="cert-title-badge">${title}</div></div>
         </div>
+        <div class="cert-footer">
+          <div class="cert-footer-col">
+            <div class="cert-sig-line"></div>
+            <span class="cert-sig-name">Vinicius Correa</span>
+            <span class="cert-footer-sub">Desenvolvedor — EcoVR</span>
+          </div>
+          <div class="cert-seal-wrap"><div class="cert-seal">♻</div><span>EcoVR</span></div>
+          <div class="cert-footer-col">
+            <div class="cert-sig-line"></div>
+            <span class="cert-sig-name">Rafael Leismann</span>
+            <span class="cert-footer-sub">Pesquisador — EcoVR</span>
+          </div>
+        </div>
+        <div class="cert-school">SENAI Caçador – SC · ${today}</div>
       </div>
+      <div class="cert-bottom-bar"></div>
     </div>
     <div class="cert-actions">
       <button class="btn-primary" onclick="window.print()"><i class="fas fa-print"></i> Imprimir / Salvar PDF</button>
