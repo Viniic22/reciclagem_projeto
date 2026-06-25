@@ -865,21 +865,15 @@
         <h2 class="section-title">Pontos de <span>Coleta</span></h2>
         <p class="section-desc">Encontre o ponto de coleta seletiva mais próximo de você.</p>
       </div>
-      <div class="map-container">
-        <div class="map-overlay">
-          <i class="fas fa-map-marked-alt"></i>
-          <p style="font-weight:600;font-size:1rem;margin-bottom:8px">Mapa Interativo de Pontos de Coleta</p>
-          <p>Em breve — integração com Google Maps para localizar<br>cooperativas e ecopontos na sua cidade.</p>
-          <div class="map-pins">
-            <div class="map-pin"><i class="fas fa-map-pin"></i> Caçador – SC</div>
-            <div class="map-pin"><i class="fas fa-map-pin"></i> Curitiba</div>
-            <div class="map-pin"><i class="fas fa-map-pin"></i> São Paulo</div>
-            <div class="map-pin"><i class="fas fa-map-pin"></i> Belo Horizonte</div>
-            <div class="map-pin"><i class="fas fa-map-pin"></i> Porto Alegre</div>
-            <div class="map-pin"><i class="fas fa-map-pin"></i> Brasília</div>
-            <div class="map-pin"><i class="fas fa-map-pin"></i> Recife</div>
-          </div>
-        </div>
+      <div class="map-wrapper">
+        <div class="map-label"><i class="fas fa-map-pin"></i> Caçador – SC, Brasil</div>
+        <iframe
+          class="google-map-iframe"
+          src="https://maps.google.com/maps?q=Caçador,SC,Brasil&output=embed&hl=pt-BR&z=13"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
       </div>
     </div>
   </section>
