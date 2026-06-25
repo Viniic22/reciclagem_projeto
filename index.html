@@ -842,7 +842,7 @@
             <h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:24px;font-size:1.15rem">Enviar Mensagem</h3>
             <div class="form-success" id="form-success" role="alert">
               <i class="fas fa-check-circle" style="font-size:1.5rem;color:var(--green-600);display:block;margin-bottom:8px"></i>
-              Mensagem enviada com sucesso! Responderemos em até 48 horas.
+              Seu cliente de e-mail foi aberto com a mensagem pronta. É só enviar!
             </div>
             <div id="contact-form">
               <div class="form-row">
@@ -1649,6 +1649,21 @@ function submitForm() {
     alert('Por favor, preencha corretamente os campos obrigatórios (*).');
     return;
   }
+
+  const assunto = document.getElementById('f-assunto').value || 'Contato via EcoVR';
+  const tel     = document.getElementById('f-tel').value;
+  const corpo   =
+    'Nome: ' + nome.value + '\n' +
+    'E-mail: ' + email.value + '\n' +
+    (tel ? 'Telefone: ' + tel + '\n' : '') +
+    'Assunto: ' + assunto + '\n\n' +
+    'Mensagem:\n' + msg.value;
+
+  const mailto = 'mailto:vinicius_correa4@estudante.sesisenai.org.br,rafael_leismann@estudante.sesisenai.org.br'
+    + '?subject=' + encodeURIComponent('[EcoVR] ' + assunto)
+    + '&body=' + encodeURIComponent(corpo);
+
+  window.location.href = mailto;
 
   document.getElementById('contact-form').style.display = 'none';
   document.getElementById('form-success').classList.add('show');
