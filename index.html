@@ -1247,24 +1247,87 @@ function toggleChat() {
   if (open) document.getElementById('chat-input').focus();
 }
 
-function chatSend(msg) {
+const GEMINI_SYSTEM = `Você é o EcoBot, assistente virtual do site EcoVR — um projeto educacional sobre reciclagem no Brasil criado por Vinicius Correa e Rafael Leismann, estudantes do SENAI de Caçador, SC.
+
+Responda SEMPRE em português brasileiro, de forma simpática, clara e educativa. Foque em temas de reciclagem, sustentabilidade, meio ambiente e coleta seletiva. Se a pergunta for completamente fora desse tema, gentilmente redirecione para assuntos de reciclagem. Mantenha respostas curtas (máx. 3 parágrafos). Não use markdown, apenas texto simples.`;
+
+const chatHistory = [];
+
+function getGeminiKey() {
+  return localStorage.getItem('ecovr_gemini_key') || '';
+}
+
+function showKeySetup() {
+  const msgs = document.getElementById('chat-messages');
+  const wrap = document.createElement('div');
+  wrap.className = 'chat-key-setup';
+  wrap.id = 'chat-key-setup';
+  wrap.innerHTML = `
+    <p>Para ativar a IA, insira sua chave Gemini API:</p>
+    <input type="password" id="key-input" placeholder="Cole sua API Key aqui..." />
+    <button onclick="saveGeminiKey()">Ativar IA ✓</button>
+  `;
+  msgs.appendChild(wrap);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function saveGeminiKey() {
+  const val = document.getElementById('key-input').value.trim();
+  if (!val) return;
+  localStorage.setItem('ecovr_gemini_key', val);
+  document.getElementById('chat-key-setup').remove();
+  addMsg('Chave salva! Agora pode perguntar sobre reciclagem. 🌿', 'bot');
+}
+
+async function chatSend(msg) {
   const input = document.getElementById('chat-input');
   const text = (msg || input.value).trim();
   if (!text) return;
   input.value = '';
   addMsg(text, 'user');
 
-  setTimeout(function() {
-    const normalized = normalizeText(text);
-    let resp = 'Boa pergunta! Para informações detalhadas sobre reciclagem, explore as seções do nosso site. Você também pode acessar o site do Ministério do Meio Ambiente em mma.gov.br 🌿';
-    for (let i = 0; i < chatResponses.length; i++) {
-      if (chatResponses[i].keys.some(function(k) { return normalized.includes(k); })) {
-        resp = chatResponses[i].resp;
-        break;
+  const key = getGeminiKey();
+  if (!key) {
+    addMsg('Preciso da sua chave Gemini para responder com IA:', 'bot');
+    showKeySetup();
+    return;
+  }
+
+  const typing = addMsg('Digitando...', 'bot typing');
+  chatHistory.push({ role: 'user', parts: [{ text }] });
+
+  try {
+    const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + key;
+    const body = {
+      system_instruction: { parts: [{ text: GEMINI_SYSTEM }] },
+      contents: chatHistory
+    };
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    const data = await res.json();
+    if (data.error) {
+      typing.remove();
+      if (data.error.code === 400 || data.error.code === 403) {
+        localStorage.removeItem('ecovr_gemini_key');
+        addMsg('Chave inválida. Insira uma chave válida:', 'bot');
+        showKeySetup();
+      } else {
+        addMsg('Erro: ' + data.error.message, 'bot');
       }
+      return;
     }
-    addMsg(resp, 'bot');
-  }, 600);
+    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Não obtive resposta. Tente novamente!';
+    chatHistory.push({ role: 'model', parts: [{ text: reply }] });
+    typing.remove();
+    addMsg(reply, 'bot');
+  } catch (e) {
+    console.error('Gemini fetch error:', e);
+    typing.remove();
+    addMsg('Ops! Sem conexão com a IA agora. Tente novamente. 🌿', 'bot');
+  }
 }
 
 function addMsg(text, type) {
@@ -1274,6 +1337,7 @@ function addMsg(text, type) {
   div.textContent = text;
   msgs.appendChild(div);
   msgs.scrollTop = msgs.scrollHeight;
+  return div;
 }
 
 // ── FORMULÁRIO ────────────────────────────────────────────────────────
