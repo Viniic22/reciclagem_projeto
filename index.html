@@ -1344,17 +1344,57 @@ function generateCertificate(title, pct, sc, total) {
   const modal = document.createElement('div');
   modal.id = 'cert-modal';
   modal.className = 'cert-modal-overlay';
+  const leafSVG = `<svg viewBox="0 0 80 130" xmlns="http://www.w3.org/2000/svg"><path d="M40,0 C65,15 78,45 70,75 C62,105 40,120 15,130 C28,105 42,80 38,55 C34,30 15,15 40,0Z" fill="#2d7a52" opacity="0.55"/><path d="M40,0 L15,130" stroke="#2d7a52" stroke-width="1.2" opacity="0.3"/></svg>`;
+  const leafR = `<svg viewBox="0 0 80 130" xmlns="http://www.w3.org/2000/svg"><path d="M40,0 C15,15 2,45 10,75 C18,105 40,120 65,130 C52,105 38,80 42,55 C46,30 65,15 40,0Z" fill="#2d7a52" opacity="0.55"/><path d="M40,0 L65,130" stroke="#2d7a52" stroke-width="1.2" opacity="0.3"/></svg>`;
+
   modal.innerHTML = `
     <div class="cert-box" id="cert-printable">
-      <img src="certificado-bg.png" class="cert-bg-img" alt="certificado"/>
-      <div class="cert-overlay">
-        <div class="cert-ov-logo">
-          <span class="cert-ov-icon">♻</span>
-          <span class="cert-ov-brand">Eco<span>VR</span></span>
+
+      <!-- Corner leaves -->
+      <div class="cc tl">${leafSVG}${leafSVG}</div>
+      <div class="cc tr">${leafR}${leafR}</div>
+      <div class="cc bl">${leafSVG}${leafSVG}</div>
+      <div class="cc br">${leafR}${leafR}</div>
+
+      <div class="cert-frame">
+        <!-- Header -->
+        <div class="cf-head">
+          <div class="cf-logo"><span>♻</span> Eco<span class="cf-vr">VR</span></div>
+          <div class="cf-medal">🏅</div>
+          <h1 class="cf-title">CERTIFICADO</h1>
+          <div class="cf-subtitle">DE CONHECIMENTO AMBIENTAL</div>
+          <div class="cf-rule"><span></span><span class="cf-diamond">✦</span><span></span></div>
         </div>
-        <div class="cert-ov-name">${name}</div>
-        <div class="cert-ov-score">${pct}% · ${sc}/${total} acertos · <em>${title}</em></div>
-        <div class="cert-ov-date">${today}</div>
+
+        <!-- Body -->
+        <div class="cf-body">
+          <p class="cf-declare">Venho por meio deste, declarar que o(a) aluno(a)</p>
+          <div class="cf-name">${name}</div>
+          <p class="cf-text">participou das atividades referentes ao meio ambiente<br>no portal <strong>EcoVR</strong>, tornando-se agora um(a)</p>
+          <div class="cf-achievement">${title}</div>
+          <div class="cf-score-badge">${pct}% de aproveitamento &nbsp;·&nbsp; ${sc} de ${total} questões corretas</div>
+        </div>
+
+        <!-- Divider -->
+        <div class="cf-rule cf-rule-sm"><span></span><span class="cf-diamond">🌱</span><span></span></div>
+
+        <!-- Footer -->
+        <div class="cf-footer">
+          <div class="cf-sig">
+            <div class="cf-sig-line"></div>
+            <strong>Vinicius Correa</strong>
+            <small>Desenvolvedor · EcoVR</small>
+          </div>
+          <div class="cf-date-col">
+            <div class="cf-date-val">${today}</div>
+            <small>SENAI Caçador – SC</small>
+          </div>
+          <div class="cf-sig">
+            <div class="cf-sig-line"></div>
+            <strong>Rafael Leismann</strong>
+            <small>Pesquisador · EcoVR</small>
+          </div>
+        </div>
       </div>
     </div>
     <div class="cert-actions">
