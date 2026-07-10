@@ -421,6 +421,7 @@
         <div class="scanner-video-box">
           <video id="scanner-video" autoplay muted playsinline></video>
           <div class="scanner-placeholder" id="scanner-placeholder"><i class="fas fa-camera"></i><p>Clique em "Ativar Câmera" para começar</p></div>
+          <div id="scanner-result" class="scanner-result-overlay"></div>
         </div>
         <div class="scanner-controls">
           <p class="calc-title"><i class="fas fa-microchip" style="color:var(--green-500)"></i> Scanner com IA (MobileNet)</p>
@@ -430,7 +431,6 @@
             <button class="btn-outline" id="scanner-stop-btn" onclick="stopScanner()" style="display:none"><i class="fas fa-stop"></i> Parar</button>
           </div>
           <p class="scanner-status" id="scanner-status" style="display:none"></p>
-          <div id="scanner-result"></div>
         </div>
       </div>
     </div>
@@ -1147,6 +1147,8 @@ async function startScanner() {
   statusEl.style.display = 'block';
   statusEl.textContent = 'Carregando modelo de IA (só na primeira vez)...';
   resultEl.innerHTML = '';
+  scanPendingKey = null;
+  scanPendingStreak = 0;
 
   try {
     if (typeof mobilenet === 'undefined') throw new Error('lib-not-loaded');
@@ -1166,44 +1168,65 @@ async function startScanner() {
   }
 }
 
+let scanPendingKey = null;
+let scanPendingStreak = 0;
+
+function findScanHit(preds) {
+  // Verifica as 3 previsões (não só a primeira) — o objeto certo às vezes
+  // aparece em 2º ou 3º lugar, principalmente com ângulo/luz não ideais.
+  for (let i = 0; i < preds.length; i++) {
+    const m = matchMaterial(preds[i].className);
+    if (m) return { pred: preds[i], match: m };
+  }
+  return null;
+}
+
 async function scanLoop() {
   if (!scannerRunning) return;
   const video = document.getElementById('scanner-video');
   if (video.readyState >= 2) {
     try {
       const preds = await mobilenetModel.classify(video, 3);
-      renderScanResult(preds);
+      const hit = findScanHit(preds);
+      const key = hit ? hit.match.material : null;
+
+      if (key && key === scanPendingKey) {
+        scanPendingStreak++;
+      } else {
+        scanPendingKey = key;
+        scanPendingStreak = key ? 1 : 0;
+      }
+
+      // Só atualiza a tela quando a mesma detecção se repete em 2 frames
+      // seguidos — evita o resultado "piscar" a cada troca de quadro.
+      // Se não achar nada, mantém o último resultado bom em vez de sumir.
+      if (hit && scanPendingStreak >= 2) {
+        renderScanResult(hit);
+      } else if (!hit && !document.getElementById('scanner-result').innerHTML) {
+        renderScanNoMatch(preds[0]);
+      }
     } catch (e) { console.error('classify error:', e); }
   }
-  if (scannerRunning) setTimeout(scanLoop, 900);
+  if (scannerRunning) setTimeout(scanLoop, 700);
 }
 
-function renderScanResult(preds) {
+function renderScanResult(hit) {
   const resultEl = document.getElementById('scanner-result');
-  if (!preds || !preds.length) return;
+  const label = hit.pred.className.split(',')[0];
+  const pct = Math.round(hit.pred.probability * 100);
+  resultEl.innerHTML = '<div class="scan-match" style="border-color:' + hit.match.color + '">'
+    + '<div class="scan-match-label">Detectado: <b>' + label + '</b> (' + pct + '%)</div>'
+    + '<div class="scan-match-bin" style="color:' + hit.match.color + '"><i class="fas fa-trash"></i> ' + hit.match.bin + '</div>'
+    + '<div class="scan-match-tip">' + hit.match.dica + '</div></div>';
+}
 
-  // Verifica as 3 previsões (não só a primeira) — o objeto certo às vezes
-  // aparece em 2º ou 3º lugar, principalmente com ângulo/luz não ideais.
-  let hit = null;
-  for (let i = 0; i < preds.length; i++) {
-    const m = matchMaterial(preds[i].className);
-    if (m) { hit = { pred: preds[i], match: m }; break; }
-  }
-
-  const top = hit ? hit.pred : preds[0];
+function renderScanNoMatch(top) {
+  const resultEl = document.getElementById('scanner-result');
   const label = top.className.split(',')[0];
   const pct = Math.round(top.probability * 100);
-
-  if (hit) {
-    resultEl.innerHTML = '<div class="scan-match" style="border-color:' + hit.match.color + '">'
-      + '<div class="scan-match-label">Detectado: <b>' + label + '</b> (' + pct + '%)</div>'
-      + '<div class="scan-match-bin" style="color:' + hit.match.color + '"><i class="fas fa-trash"></i> ' + hit.match.bin + '</div>'
-      + '<div class="scan-match-tip">' + hit.match.dica + '</div></div>';
-  } else {
-    resultEl.innerHTML = '<div class="scan-match scan-nomatch">'
-      + '<div class="scan-match-label">Detectado: <b>' + label + '</b> (' + pct + '%)</div>'
-      + '<div class="scan-match-tip">Ainda não sei classificar esse objeto — tente aproximar mais, melhorar a luz ou usar um fundo liso.</div></div>';
-  }
+  resultEl.innerHTML = '<div class="scan-match scan-nomatch">'
+    + '<div class="scan-match-label">Detectado: <b>' + label + '</b> (' + pct + '%)</div>'
+    + '<div class="scan-match-tip">Ainda não sei classificar esse objeto — tente aproximar mais, melhorar a luz ou usar um fundo liso.</div></div>';
 }
 
 function stopScanner() {
@@ -1216,6 +1239,7 @@ function stopScanner() {
   document.getElementById('scanner-start-btn').style.display = 'inline-flex';
   document.getElementById('scanner-stop-btn').style.display = 'none';
   document.getElementById('scanner-status').style.display = 'none';
+  document.getElementById('scanner-result').innerHTML = '';
 }
 
 // ── SIMULADOR RECICLAR VS ATERRO ────────────────────────────────────────

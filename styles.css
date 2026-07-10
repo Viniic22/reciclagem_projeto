@@ -755,6 +755,12 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
 .scan-match-tip { font-size: 0.82rem; color: var(--text-muted); line-height: 1.55; }
 .scan-nomatch { border-color: var(--border); }
 
+/* Resultado sobreposto direto na câmera, sem precisar rolar a página */
+.scanner-result-overlay { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; pointer-events: none; }
+.scanner-result-overlay .scan-match { margin-top: 0; border: none; border-top: 3px solid var(--green-500); border-radius: 0; background: rgba(8,20,14,0.82); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.scanner-result-overlay .scan-match-label, .scanner-result-overlay .scan-match-tip { color: rgba(255,255,255,0.82); }
+.scanner-result-overlay .scan-match-label b { color: #fff; }
+
 /* ── SIMULADOR RECICLAR VS ATERRO ── */
 .sim-wrap { display: grid; grid-template-columns: 1fr 1.3fr; gap: 48px; align-items: start; margin-top: 48px; }
 .sim-controls { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 32px; }
