@@ -1124,10 +1124,10 @@ let scannerRunning = false;
 
 const scanMapping = [
   { keys: ['bottle'], material: 'Plástico/Vidro', color: '#ef4444', bin: 'Vermelha (plástico) ou Verde (vidro)', dica: 'Lave a embalagem e retire a tampa antes de descartar.' },
-  { keys: ['can, tin can', 'beer can', 'pop can', 'soda can'], material: 'Metal', color: '#eab308', bin: 'Amarela', dica: 'Amasse a lata para economizar espaço na coleta.' },
-  { keys: ['newspaper', 'envelope', 'carton', 'paper towel', 'notebook', 'book jacket', 'comic book'], material: 'Papel/Papelão', color: '#3b82f6', bin: 'Azul', dica: 'Mantenha seco e sem gordura ou restos de comida.' },
+  { keys: ['tin can', 'beer can', 'pop can', 'soda can'], material: 'Metal', color: '#eab308', bin: 'Amarela', dica: 'Amasse a lata para economizar espaço na coleta.' },
+  { keys: ['newspaper', 'envelope', 'carton', 'paper towel', 'book jacket', 'comic book'], material: 'Papel/Papelão', color: '#3b82f6', bin: 'Azul', dica: 'Mantenha seco e sem gordura ou restos de comida.' },
   { keys: ['banana', 'orange', 'lemon', 'pineapple', 'broccoli', 'mushroom', 'cucumber', 'zucchini', 'pomegranate'], material: 'Orgânico', color: '#92400e', bin: 'Marrom', dica: 'Pode virar composto/adubo em casa.' },
-  { keys: ['cellular telephone', 'laptop', 'desktop computer', 'remote control', 'joystick', 'monitor', 'ipod'], material: 'Eletrônico (E-lixo)', color: '#7c3aed', bin: 'Ponto de coleta especializado', dica: 'Nunca descarte no lixo comum — leve a um ponto de coleta de eletrônicos.' },
+  { keys: ['cellular telephone', 'notebook computer', 'desktop computer', 'remote control', 'joystick', 'monitor', 'ipod'], material: 'Eletrônico (E-lixo)', color: '#7c3aed', bin: 'Ponto de coleta especializado', dica: 'Nunca descarte no lixo comum — leve a um ponto de coleta de eletrônicos.' },
   { keys: ['plastic bag', 'shopping basket'], material: 'Plástico', color: '#ef4444', bin: 'Vermelha', dica: 'Sacolas plásticas podem ser reutilizadas várias vezes antes de reciclar.' }
 ];
 
@@ -1181,19 +1181,28 @@ async function scanLoop() {
 function renderScanResult(preds) {
   const resultEl = document.getElementById('scanner-result');
   if (!preds || !preds.length) return;
-  const top = preds[0];
+
+  // Verifica as 3 previsões (não só a primeira) — o objeto certo às vezes
+  // aparece em 2º ou 3º lugar, principalmente com ângulo/luz não ideais.
+  let hit = null;
+  for (let i = 0; i < preds.length; i++) {
+    const m = matchMaterial(preds[i].className);
+    if (m) { hit = { pred: preds[i], match: m }; break; }
+  }
+
+  const top = hit ? hit.pred : preds[0];
   const label = top.className.split(',')[0];
   const pct = Math.round(top.probability * 100);
-  const match = matchMaterial(top.className);
-  if (match) {
-    resultEl.innerHTML = '<div class="scan-match" style="border-color:' + match.color + '">'
+
+  if (hit) {
+    resultEl.innerHTML = '<div class="scan-match" style="border-color:' + hit.match.color + '">'
       + '<div class="scan-match-label">Detectado: <b>' + label + '</b> (' + pct + '%)</div>'
-      + '<div class="scan-match-bin" style="color:' + match.color + '"><i class="fas fa-trash"></i> ' + match.bin + '</div>'
-      + '<div class="scan-match-tip">' + match.dica + '</div></div>';
+      + '<div class="scan-match-bin" style="color:' + hit.match.color + '"><i class="fas fa-trash"></i> ' + hit.match.bin + '</div>'
+      + '<div class="scan-match-tip">' + hit.match.dica + '</div></div>';
   } else {
     resultEl.innerHTML = '<div class="scan-match scan-nomatch">'
       + '<div class="scan-match-label">Detectado: <b>' + label + '</b> (' + pct + '%)</div>'
-      + '<div class="scan-match-tip">Ainda não sei classificar esse objeto — tente uma garrafa, lata, papel, fruta ou eletrônico!</div></div>';
+      + '<div class="scan-match-tip">Ainda não sei classificar esse objeto — tente aproximar mais, melhorar a luz ou usar um fundo liso.</div></div>';
   }
 }
 
