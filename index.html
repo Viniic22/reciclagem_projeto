@@ -509,30 +509,45 @@
           <h2 class="section-title">Desafios <span>Regionais</span></h2>
           <p class="section-desc" style="margin-bottom:36px">A coleta seletiva ainda é concentrada no Sul e Sudeste. Norte e Nordeste têm muito espaço para crescer.</p>
           <div class="region-chart" id="region-chart">
-            <div class="region-bar-item">
-              <div class="region-label"><span class="region-dot" style="background:#00e87c"></span>Sul</div>
-              <div class="region-track"><div class="region-fill" data-pct="81.9" style="--rc:#00e87c"></div></div>
-              <span class="region-pct" style="color:#00e87c">81,9%</span>
+            <div class="brasil-map-wrap" onmouseleave="resetRegionInfo()">
+              <svg class="brasil-map-svg" viewBox="0 0 500 550" role="img" aria-label="Mapa do Brasil dividido por região, com índice de reciclagem de cada uma">
+                <path data-region="norte" tabindex="0" role="button" aria-label="Norte: 37 vírgula 0 por cento de reciclagem" style="fill:#ef4444"
+                  onmouseenter="showRegionInfo('norte')" onfocus="showRegionInfo('norte')" onclick="showRegionInfo('norte')" onkeydown="if(event.key==='Enter')showRegionInfo('norte')"
+                  d="M 60,60 C 40,90 30,140 50,180 C 70,220 130,235 190,225
+    C 230,240 260,220 290,200 C 330,210 370,190 380,150
+    C 390,110 360,70 310,50 C 260,20 180,15 130,25 C 95,30 75,40 60,60 Z"/>
+                <path data-region="nordeste" tabindex="0" role="button" aria-label="Nordeste: 33 vírgula 5 por cento de reciclagem" style="fill:#ef4444"
+                  onmouseenter="showRegionInfo('nordeste')" onfocus="showRegionInfo('nordeste')" onclick="showRegionInfo('nordeste')" onkeydown="if(event.key==='Enter')showRegionInfo('nordeste')"
+                  d="M 290,200 C 320,180 350,175 380,150
+    C 420,160 460,180 470,220 C 478,250 460,270 430,280
+    C 400,300 370,290 350,270 C 330,250 300,240 280,235
+    C 265,225 275,210 290,200 Z"/>
+                <path data-region="centro-oeste" tabindex="0" role="button" aria-label="Centro-Oeste: 51 vírgula 3 por cento de reciclagem" style="fill:#f59e0b"
+                  onmouseenter="showRegionInfo('centro-oeste')" onfocus="showRegionInfo('centro-oeste')" onclick="showRegionInfo('centro-oeste')" onkeydown="if(event.key==='Enter')showRegionInfo('centro-oeste')"
+                  d="M 190,225 C 230,240 260,220 280,235
+    C 300,250 310,280 300,320 C 290,355 260,375 220,370
+    C 180,365 150,340 145,300 C 140,270 155,245 190,225 Z"/>
+                <path data-region="sudeste" tabindex="0" role="button" aria-label="Sudeste: 80 vírgula 6 por cento de reciclagem" style="fill:#00e87c"
+                  onmouseenter="showRegionInfo('sudeste')" onfocus="showRegionInfo('sudeste')" onclick="showRegionInfo('sudeste')" onkeydown="if(event.key==='Enter')showRegionInfo('sudeste')"
+                  d="M 300,320 C 310,280 300,250 350,270
+    C 370,290 375,320 365,350 C 358,375 330,395 300,390
+    C 280,387 275,360 285,340 C 290,332 295,325 300,320 Z"/>
+                <path data-region="sul" tabindex="0" role="button" aria-label="Sul: 81 vírgula 9 por cento de reciclagem" style="fill:#00e87c"
+                  onmouseenter="showRegionInfo('sul')" onfocus="showRegionInfo('sul')" onclick="showRegionInfo('sul')" onkeydown="if(event.key==='Enter')showRegionInfo('sul')"
+                  d="M 220,370 C 260,375 290,390 300,390
+    C 295,420 280,450 260,480 C 245,500 225,510 210,495
+    C 195,475 195,440 200,410 C 203,395 210,380 220,370 Z"/>
+              </svg>
             </div>
-            <div class="region-bar-item">
-              <div class="region-label"><span class="region-dot" style="background:#00e87c"></span>Sudeste</div>
-              <div class="region-track"><div class="region-fill" data-pct="80.6" style="--rc:#00e87c"></div></div>
-              <span class="region-pct" style="color:#00e87c">80,6%</span>
+            <div class="brasil-map-info" id="brasil-map-info">
+              <div class="bmi-empty">Toque ou passe o mouse sobre uma região do mapa</div>
             </div>
-            <div class="region-bar-item">
-              <div class="region-label"><span class="region-dot" style="background:#f59e0b"></span>Centro-Oeste</div>
-              <div class="region-track"><div class="region-fill" data-pct="51.3" style="--rc:#f59e0b"></div></div>
-              <span class="region-pct" style="color:#f59e0b">51,3%</span>
-            </div>
-            <div class="region-bar-item">
-              <div class="region-label"><span class="region-dot" style="background:#ef4444"></span>Norte</div>
-              <div class="region-track"><div class="region-fill" data-pct="37.0" style="--rc:#ef4444"></div></div>
-              <span class="region-pct" style="color:#ef4444">37,0%</span>
-            </div>
-            <div class="region-bar-item">
-              <div class="region-label"><span class="region-dot" style="background:#ef4444"></span>Nordeste</div>
-              <div class="region-track"><div class="region-fill" data-pct="33.5" style="--rc:#ef4444"></div></div>
-              <span class="region-pct" style="color:#ef4444">33,5%</span>
+            <div class="brasil-map-legend">
+              <button type="button" class="region-legend-item" data-region="sul" onmouseenter="showRegionInfo('sul')" onclick="showRegionInfo('sul')"><span class="region-dot" style="background:#00e87c"></span>Sul <b style="color:#00e87c">81,9%</b></button>
+              <button type="button" class="region-legend-item" data-region="sudeste" onmouseenter="showRegionInfo('sudeste')" onclick="showRegionInfo('sudeste')"><span class="region-dot" style="background:#00e87c"></span>Sudeste <b style="color:#00e87c">80,6%</b></button>
+              <button type="button" class="region-legend-item" data-region="centro-oeste" onmouseenter="showRegionInfo('centro-oeste')" onclick="showRegionInfo('centro-oeste')"><span class="region-dot" style="background:#f59e0b"></span>Centro-Oeste <b style="color:#f59e0b">51,3%</b></button>
+              <button type="button" class="region-legend-item" data-region="norte" onmouseenter="showRegionInfo('norte')" onclick="showRegionInfo('norte')"><span class="region-dot" style="background:#ef4444"></span>Norte <b style="color:#ef4444">37,0%</b></button>
+              <button type="button" class="region-legend-item" data-region="nordeste" onmouseenter="showRegionInfo('nordeste')" onclick="showRegionInfo('nordeste')"><span class="region-dot" style="background:#ef4444"></span>Nordeste <b style="color:#ef4444">33,5%</b></button>
             </div>
           </div>
         </div>
@@ -1081,22 +1096,33 @@ function showPage(page, linkEl, closeMenu) {
   }
 }
 
-// ── BARRAS REGIONAIS ──────────────────────────────────────────────────
-function initRegionBars() {
-  document.querySelectorAll('.region-fill').forEach(function(el) {
-    el.style.width = '0%';
-    setTimeout(function() {
-      el.style.width = el.dataset.pct + '%';
-    }, 100);
+// ── MAPA DO BRASIL POR REGIÃO ─────────────────────────────────────────
+const regionData = {
+  norte: { name: 'Norte', pct: '37,0%', color: '#ef4444', desc: 'Maior desafio logístico do país: distâncias continentais e a floresta amazônica dificultam a coleta seletiva.' },
+  nordeste: { name: 'Nordeste', pct: '33,5%', color: '#ef4444', desc: 'Menor índice de reciclagem do Brasil, mas com grande potencial de crescimento nos próximos anos.' },
+  'centro-oeste': { name: 'Centro-Oeste', pct: '51,3%', color: '#f59e0b', desc: 'Cresce a passos moderados, ainda dependente de expansão da coleta seletiva fora das capitais.' },
+  sudeste: { name: 'Sudeste', pct: '80,6%', color: '#00e87c', desc: 'Concentra a maior parte da população e das cooperativas de reciclagem do país.' },
+  sul: { name: 'Sul', pct: '81,9%', color: '#00e87c', desc: 'Região com o maior índice de reciclagem do Brasil, impulsionado por programas municipais consolidados.' }
+};
+
+function showRegionInfo(key) {
+  const d = regionData[key];
+  if (!d) return;
+  document.querySelectorAll('.brasil-map-svg path').forEach(function(p) {
+    p.classList.toggle('active', p.getAttribute('data-region') === key);
   });
+  document.querySelectorAll('.region-legend-item').forEach(function(b) {
+    b.classList.toggle('active', b.getAttribute('data-region') === key);
+  });
+  const info = document.getElementById('brasil-map-info');
+  info.innerHTML = '<div class="bmi-name">' + d.name + ' <span class="bmi-pct" style="color:' + d.color + '">' + d.pct + '</span></div>'
+    + '<p class="bmi-desc">' + d.desc + '</p>';
 }
 
-function initBars() {
-  initRegionBars();
-  document.querySelectorAll('.bar-fill').forEach(function(el) {
-    el.style.width = '0%';
-    setTimeout(function() { el.style.width = el.dataset.width + '%'; }, 100);
-  });
+function resetRegionInfo() {
+  document.querySelectorAll('.brasil-map-svg path, .region-legend-item').forEach(function(el) { el.classList.remove('active'); });
+  const info = document.getElementById('brasil-map-info');
+  info.innerHTML = '<div class="bmi-empty">Toque ou passe o mouse sobre uma região do mapa</div>';
 }
 
 // ── SCROLL ────────────────────────────────────────────────────────────
@@ -1547,84 +1573,25 @@ function toggleChat() {
   if (open) document.getElementById('chat-input').focus();
 }
 
-const GROQ_SYSTEM = `Você é o EcoBot, assistente do EcoVR sobre reciclagem e sustentabilidade no Brasil.
+const CHAT_FALLBACK = 'Ainda não tenho uma resposta pronta pra isso. Tente perguntar sobre separação de lixo, pilhas, eletrônicos, plástico, vidro, alumínio, orgânicos ou coleta seletiva!';
 
-Regras obrigatórias:
-- Responda em português, de forma direta e objetiva
-- Máximo 2 frases por resposta — seja conciso
-- Sem listas, sem tópicos, sem markdown, só texto simples
-- Se a pergunta fugir do tema ambiental, responda em 1 frase e redirecione para reciclagem`;
-
-const chatHistory = [];
-const _k = ['gsk_EdhIzKs4q32uT', 'MYrFCbDWGdyb3FYxNe', 'ehuAlY0TtuUOFmTsZC939'].join('');
-
-function getGroqKey() {
-  return _k;
-}
-
-function showKeySetup() {
-  const msgs = document.getElementById('chat-messages');
-  const wrap = document.createElement('div');
-  wrap.className = 'chat-key-setup';
-  wrap.id = 'chat-key-setup';
-  wrap.innerHTML = `
-    <p>Para ativar a IA, insira sua chave Groq API:</p>
-    <input type="password" id="key-input" placeholder="Cole sua API Key aqui..." />
-    <button onclick="saveGroqKey()">Ativar IA ✓</button>
-  `;
-  msgs.appendChild(wrap);
-  msgs.scrollTop = msgs.scrollHeight;
-}
-
-async function chatSend(msg) {
+function chatSend(msg) {
   const input = document.getElementById('chat-input');
   const text = (msg || input.value).trim();
   if (!text) return;
   input.value = '';
   addMsg(text, 'user');
 
-  const key = getGroqKey();
+  const normalized = normalizeText(text);
+  const match = chatResponses.find(function(r) {
+    return r.keys.some(function(k) { return normalized.indexOf(normalizeText(k)) !== -1; });
+  });
 
   const typing = addMsg('Digitando...', 'bot typing');
-  chatHistory.push({ role: 'user', content: text });
-
-  try {
-    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + key
-      },
-      body: JSON.stringify({
-        model: 'llama-3.3-70b-versatile',
-        messages: [{ role: 'system', content: GROQ_SYSTEM }, ...chatHistory],
-        max_tokens: 120
-      })
-    });
-    const data = await res.json();
-    if (data.error) {
-      typing.remove();
-      const status = res.status;
-      if (status === 401 || status === 403) {
-        localStorage.removeItem('ecovr_groq_key');
-        addMsg('Chave inválida. Insira uma chave válida:', 'bot');
-        showKeySetup();
-      } else if (status === 429) {
-        addMsg('Limite de requisições atingido. Aguarde um momento e tente novamente.', 'bot');
-      } else {
-        addMsg('Erro: ' + (data.error.message || 'tente novamente.'), 'bot');
-      }
-      return;
-    }
-    const reply = data.choices?.[0]?.message?.content || 'Não obtive resposta. Tente novamente!';
-    chatHistory.push({ role: 'assistant', content: reply });
+  setTimeout(function() {
     typing.remove();
-    addMsg(reply, 'bot');
-  } catch (e) {
-    console.error('Groq fetch error:', e);
-    typing.remove();
-    addMsg('Ops! Sem conexão com a IA agora. Tente novamente. 🌿', 'bot');
-  }
+    addMsg(match ? match.resp : CHAT_FALLBACK, 'bot');
+  }, 500);
 }
 
 function addMsg(text, type) {

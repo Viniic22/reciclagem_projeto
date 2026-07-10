@@ -130,12 +130,23 @@ html, body, * {
 
 /* ── REGION CHART ── */
 .region-chart { display: flex; flex-direction: column; gap: 14px; }
-.region-bar-item { display: grid; grid-template-columns: 110px 1fr 52px; align-items: center; gap: 12px; }
-.region-label { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 600; color: var(--text); }
 .region-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-.region-track { height: 10px; background: var(--surface); border-radius: 99px; overflow: hidden; border: 1px solid var(--border); }
-.region-fill { height: 100%; border-radius: 99px; background: var(--rc, #00e87c); width: 0%; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); }
-.region-pct { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 800; text-align: right; }
+
+/* ── MAPA DO BRASIL POR REGIÃO ── */
+.brasil-map-wrap { display: flex; justify-content: center; }
+.brasil-map-svg { width: 100%; max-width: 320px; height: auto; }
+.brasil-map-svg path { stroke: var(--surface); stroke-width: 3; cursor: pointer; transition: filter 0.2s, transform 0.2s; transform-box: fill-box; transform-origin: center; }
+.brasil-map-svg path:hover, .brasil-map-svg path.active { filter: brightness(1.18); transform: scale(1.03); }
+.brasil-map-svg path:focus { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.brasil-map-info { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 16px 18px; min-height: 92px; }
+.bmi-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; color: var(--text); display: flex; align-items: baseline; gap: 8px; }
+.bmi-pct { font-size: 1rem; font-weight: 800; }
+.bmi-desc { font-size: 0.85rem; color: var(--text-muted); margin-top: 6px; line-height: 1.55; }
+.bmi-empty { color: var(--text-muted); font-size: 0.85rem; text-align: center; padding: 8px 0; }
+.brasil-map-legend { display: flex; flex-wrap: wrap; gap: 8px; }
+.region-legend-item { display: flex; align-items: center; gap: 6px; background: var(--surface); border: 1px solid var(--border); border-radius: 99px; padding: 6px 12px; font-size: 0.78rem; font-weight: 600; color: var(--text); cursor: pointer; transition: all 0.2s; font-family: inherit; }
+.region-legend-item:hover, .region-legend-item.active { border-color: var(--accent); background: rgba(0,232,124,0.08); }
+.region-legend-item b { margin-left: 2px; }
 
 /* ── HERO ── */
 .hero { min-height: 100vh; background: linear-gradient(145deg, var(--green-900) 0%, var(--green-800) 40%, var(--blue-900) 100%); display: flex; align-items: center; position: relative; overflow: hidden; padding-top: 68px; }
