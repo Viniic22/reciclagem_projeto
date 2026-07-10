@@ -734,6 +734,27 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
 .calc-result-unit { font-size: 0.78rem; font-weight: 600; color: var(--text-muted); margin-top: 6px; }
 .calc-result-label { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
 
+/* ── SIMULADOR RECICLAR VS ATERRO ── */
+.sim-wrap { display: grid; grid-template-columns: 1fr 1.3fr; gap: 48px; align-items: start; margin-top: 48px; }
+.sim-controls { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 32px; }
+.sim-mat-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.sim-mat-btn { display: flex; align-items: center; gap: 8px; background: var(--surface2); border: 1px solid var(--border); border-radius: 99px; padding: 10px 18px; font-size: 0.85rem; font-weight: 600; color: var(--text); cursor: pointer; transition: all 0.2s; font-family: inherit; }
+.sim-mat-btn span { font-size: 1.1rem; }
+.sim-mat-btn:hover { border-color: var(--green-400); }
+.sim-mat-btn.active { background: rgba(0,232,124,0.1); border-color: var(--green-500); color: var(--green-500); }
+.sim-compare { display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: center; }
+.sim-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 32px 24px; text-align: center; transition: all var(--transition); }
+.sim-card-icon { font-size: 2.2rem; margin-bottom: 10px; }
+.sim-card-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 16px; }
+.sim-card-num { font-family: 'Syne', sans-serif; font-size: 2.4rem; font-weight: 800; line-height: 1; }
+.sim-aterro .sim-card-num, .sim-aterro .sim-card-num span { color: #ef4444; }
+.sim-card-unit { font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; margin-bottom: 16px; }
+.sim-card-fact { font-size: 0.82rem; color: var(--text-muted); line-height: 1.55; }
+.sim-stat-row { margin-bottom: 14px; }
+.sim-stat-num { display: block; font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--green-500); line-height: 1; }
+.sim-stat-label { font-size: 0.75rem; color: var(--text-muted); }
+.sim-vs { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.85rem; color: var(--text-muted); background: var(--surface2); border: 1px solid var(--border); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; }
+
 /* ── IMPACT FACTS ── */
 .impact-facts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 20px; }
 .impact-fact-card { background: linear-gradient(135deg, var(--green-900), var(--blue-900)); border-radius: var(--radius); padding: 32px 24px; text-align: center; color: white; transition: all var(--transition); }
@@ -757,6 +778,9 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
   .calc-wrap { grid-template-columns: 1fr; }
   .calc-results { grid-template-columns: 1fr 1fr; }
   .impact-facts-grid { grid-template-columns: 1fr 1fr; }
+  .sim-wrap { grid-template-columns: 1fr; }
+  .sim-compare { grid-template-columns: 1fr; }
+  .sim-vs { margin: 0 auto; }
 }
 @media (max-width: 480px) {
   .calc-results { grid-template-columns: 1fr; }

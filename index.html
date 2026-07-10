@@ -733,6 +733,53 @@
     </div>
   </section>
 
+  <!-- SIMULADOR RECICLAR VS ATERRO -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-eyebrow">Simulador</div>
+        <h2 class="section-title">Reciclar <span>vs.</span> Aterro</h2>
+        <p class="section-desc">Escolha um material e a quantidade para ver o que acontece em cada destino.</p>
+      </div>
+      <div class="sim-wrap">
+        <div class="sim-controls reveal rd1">
+          <p class="calc-title"><i class="fas fa-recycle" style="color:var(--green-500)"></i> Escolha o material</p>
+          <div class="sim-mat-row">
+            <button type="button" class="sim-mat-btn" data-mat="papel" onclick="selectSimMaterial('papel')"><span>📄</span>Papel</button>
+            <button type="button" class="sim-mat-btn active" data-mat="plastico" onclick="selectSimMaterial('plastico')"><span>🧴</span>Plástico</button>
+            <button type="button" class="sim-mat-btn" data-mat="aluminio" onclick="selectSimMaterial('aluminio')"><span>🥫</span>Alumínio</button>
+            <button type="button" class="sim-mat-btn" data-mat="vidro" onclick="selectSimMaterial('vidro')"><span>🍾</span>Vidro</button>
+          </div>
+          <div class="calc-slider-item" style="margin-top:28px">
+            <div class="calc-slider-header">
+              <span class="calc-mat-icon">⚖️</span>
+              <span class="calc-mat-name">Quantidade</span>
+              <span class="calc-mat-val" id="sim-peso-val">5 kg</span>
+            </div>
+            <input type="range" class="calc-range" id="sim-peso" min="1" max="50" value="5" oninput="calcSimulacao()">
+          </div>
+        </div>
+        <div class="sim-compare reveal rd2">
+          <div class="sim-card sim-aterro">
+            <div class="sim-card-icon">🗑️</div>
+            <div class="sim-card-title">Se for pro aterro</div>
+            <div class="sim-card-num"><span id="sim-decomp-num">400</span></div>
+            <div class="sim-card-unit" id="sim-decomp-unit">anos para decompor</div>
+            <p class="sim-card-fact" id="sim-aterro-fact"></p>
+          </div>
+          <div class="sim-vs">VS</div>
+          <div class="sim-card sim-reciclado">
+            <div class="sim-card-icon">♻️</div>
+            <div class="sim-card-title">Se for reciclado</div>
+            <div class="sim-stat-row"><span class="sim-stat-num" id="sim-co2-num">0</span><span class="sim-stat-label">kg de CO₂ economizados</span></div>
+            <div class="sim-stat-row"><span class="sim-stat-num" id="sim-energy-num">0</span><span class="sim-stat-label">kWh de energia economizados</span></div>
+            <p class="sim-card-fact" id="sim-reciclado-fact"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FATOS IMPACTANTES -->
   <section class="section section-alt">
     <div class="container">
@@ -1039,6 +1086,33 @@ function calcImpact() {
   document.getElementById('res-trees').textContent  = trees;
   document.getElementById('res-energy').textContent = energy;
   document.getElementById('res-water').textContent  = water;
+}
+
+// ── SIMULADOR RECICLAR VS ATERRO ────────────────────────────────────────
+const simData = {
+  papel:    { decompo: 3,       decompoUnit: 'meses para decompor',                energyPerKg: 4.7,  co2PerKg: 1.1, aterroFact: 'Decompõe rápido, mas compactado sem oxigênio no aterro ainda libera gases de efeito estufa.', recicladoFact: 'Pode virar papel novo em cerca de 2 semanas, economizando árvores e água.' },
+  plastico: { decompo: 400,     decompoUnit: 'anos para decompor',                 energyPerKg: 11.7, co2PerKg: 1.5, aterroFact: 'Libera microplásticos continuamente enquanto se decompõe, contaminando solo e água.', recicladoFact: 'Pode virar uma fibra têxtil ou nova embalagem em poucas semanas.' },
+  aluminio: { decompo: 200,     decompoUnit: 'anos para decompor',                 energyPerKg: 47.2, co2PerKg: 9.0, aterroFact: 'Ocupa espaço no aterro por séculos, mesmo sendo 100% reciclável infinitas vezes.', recicladoFact: 'Pode virar uma lata nova em até 60 dias — o material mais eficiente de reciclar.' },
+  vidro:    { decompo: 1000000, decompoUnit: 'anos (praticamente eterno)',         energyPerKg: 0.7,  co2PerKg: 0.3, aterroFact: 'Nunca desaparece — é um dos materiais mais persistentes em qualquer aterro.', recicladoFact: 'Pode ser fundido e virar vidro novo infinitas vezes, sem nunca perder qualidade.' }
+};
+let simMaterial = 'plastico';
+
+function selectSimMaterial(mat) {
+  simMaterial = mat;
+  document.querySelectorAll('.sim-mat-btn').forEach(function(b) { b.classList.toggle('active', b.dataset.mat === mat); });
+  calcSimulacao();
+}
+
+function calcSimulacao() {
+  const peso = +document.getElementById('sim-peso').value;
+  document.getElementById('sim-peso-val').textContent = peso + ' kg';
+  const d = simData[simMaterial];
+  document.getElementById('sim-decomp-num').textContent = d.decompo.toLocaleString('pt-BR');
+  document.getElementById('sim-decomp-unit').textContent = d.decompoUnit;
+  document.getElementById('sim-aterro-fact').textContent = d.aterroFact;
+  document.getElementById('sim-co2-num').textContent = (peso * d.co2PerKg).toFixed(1);
+  document.getElementById('sim-energy-num').textContent = (peso * d.energyPerKg).toFixed(0);
+  document.getElementById('sim-reciclado-fact').textContent = d.recicladoFact;
 }
 
 function toggleGrayscale() {
@@ -1640,6 +1714,7 @@ function submitForm() {
 document.addEventListener('DOMContentLoaded', function() {
   initCounters();
   renderQuiz();
+  calcSimulacao();
 
   // Scroll reveal
   const revealObserver = new IntersectionObserver(entries => {
