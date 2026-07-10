@@ -809,6 +809,7 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
   .sim-compare { grid-template-columns: 1fr; }
   .sim-vs { margin: 0 auto; }
   .scanner-wrap { grid-template-columns: 1fr; }
+  .scanner-video-box { aspect-ratio: 3/4; max-height: 70vh; }
 }
 @media (max-width: 480px) {
   .calc-results { grid-template-columns: 1fr; }
